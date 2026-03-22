@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Menu — HUMO Cigar Lounge Bratislava | Cigary, Whisky, Rum, Koktaily</title>
+<meta name="description" content="Kompletné menu HUMO Cigar Lounge Bratislava. Prémiové kubánske cigary, non-havana selekcie, whisky single malt, rum, koňak a koktaily. Gorkého 5, Staré Mesto.">
+<link rel="canonical" href="https://humo.sk/menu.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<style>
+:root{
+  --bg:#080b07;--bg2:#0c0f0b;--bg3:#101410;
+  --gold:#b79b7b;--gold2:#d4b896;
+  --text:#f4f1ea;--body:rgba(244,241,234,.72);--dim:rgba(244,241,234,.42);
+  --border:rgba(183,155,123,.14);
+  --ease:cubic-bezier(.23,1,.32,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;cursor:none!important}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:'Montserrat',sans-serif;
+     overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6}
+a{text-decoration:none;color:inherit}
+button{background:none;border:none;font-family:inherit;color:inherit}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.028;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:256px}
+/* Page wipe */
+#pw{position:fixed;inset:0;background:var(--gold);z-index:99990;
+    transform:scaleX(1);transform-origin:right center;pointer-events:none}
+/* Cursor */
+#cur{width:5px;height:5px;background:var(--gold);border-radius:50%;
+     position:fixed;pointer-events:none;z-index:99995;transform:translate(-50%,-50%)}
+#cur-r{width:28px;height:28px;border:1px solid rgba(183,155,123,.4);border-radius:50%;
+       position:fixed;pointer-events:none;z-index:99994;transform:translate(-50%,-50%);
+       transition:width .4s var(--ease),height .4s var(--ease),border-color .4s}
+#cur-r.h{width:50px;height:50px;border-color:rgba(183,155,123,.2)}
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:9000;padding:1rem 6vw;
+     display:flex;align-items:center;justify-content:space-between;
+     background:rgba(8,11,7,.97);backdrop-filter:blur(24px);
+     border-bottom:1px solid var(--border)}
+.nl img{width:145px;height:auto;display:block}
+.nm{display:flex;gap:2.4rem;list-style:none;
+    position:absolute;left:50%;transform:translateX(-50%)}
+.nm a{font-size:.72rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;
+      color:rgba(244,241,234,.52);transition:color .3s;padding:4px 0;position:relative}
+.nm a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;
+             background:var(--gold);transition:width .42s var(--ease)}
+.nm a:hover{color:var(--gold)}.nm a:hover::after{width:100%}
+.nm a.active{color:var(--gold)}.nm a.active::after{width:100%}
+.nav-back{font-size:.68rem;letter-spacing:3px;font-weight:600;color:rgba(244,241,234,.42);
+          text-transform:uppercase;display:flex;align-items:center;gap:.6rem;
+          transition:color .3s}
+.nav-back:hover{color:var(--gold)}
+.bur{display:none;flex-direction:column;gap:5px;padding:6px;cursor:pointer!important}
+.bur span{display:block;width:22px;height:1px;background:var(--gold);transition:.3s}
+#mm{position:fixed;inset:0;background:var(--bg2);z-index:8500;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    clip-path:inset(0 100% 0 0);transition:clip-path .75s var(--ease)}
+#mm.o{clip-path:inset(0 0% 0 0)}
+.mm-list{list-style:none;text-align:center}
+.mm-list li{padding:.9rem 0;overflow:hidden}
+.mm-list a{font-family:'Cinzel',serif;font-size:clamp(1.9rem,5.5vw,3rem);
+           letter-spacing:6px;color:var(--gold);display:inline-block;
+           transform:translateY(100%);transition:transform .55s var(--ease)}
+#mm.o .mm-list a{transform:translateY(0)}
+/* MENU HERO HEADER */
+#menu-hero{padding:18vh 8vw 10vh;position:relative;overflow:hidden;
+           border-bottom:1px solid var(--border)}
+.mh-kicker{font-size:.68rem;letter-spacing:6px;color:rgba(183,155,123,.6);
+           text-transform:uppercase;font-weight:400;margin-bottom:1.4rem}
+.mh-title{font-family:'Cinzel',serif;font-size:clamp(2.8rem,7vw,8rem);
+          line-height:.94;letter-spacing:3px;color:var(--text);margin-bottom:2.4rem}
+.mh-title span{display:block;color:var(--gold)}
+.mh-desc{font-size:.96rem;font-weight:300;color:var(--body);
+         max-width:500px;line-height:2.05}
+.mh-deco{position:absolute;right:-2vw;bottom:-4vh;font-family:'Cinzel',serif;
+         font-size:clamp(10rem,20vw,24rem);line-height:.9;
+         color:rgba(183,155,123,.03);letter-spacing:4px;
+         pointer-events:none;user-select:none}
+/* CATEGORY TABS */
+.cat-tabs{position:sticky;top:82px;z-index:8000;
+          background:rgba(8,11,7,.97);backdrop-filter:blur(24px);
+          border-bottom:1px solid var(--border);
+          display:flex;gap:0;padding:0 8vw}
+.cat-tab{font-size:.72rem;letter-spacing:4px;font-weight:600;text-transform:uppercase;
+         color:rgba(244,241,234,.4);padding:1.4rem 2rem;
+         border-bottom:1px solid transparent;transition:color .3s,border-color .3s;
+         cursor:pointer!important}
+.cat-tab:hover{color:rgba(244,241,234,.72)}
+.cat-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+/* SECTIONS */
+.menu-section{padding:10vh 8vw;border-bottom:1px solid var(--border)}
+.menu-section:last-child{border-bottom:none}
+.ms-header{margin-bottom:6vh}
+.ms-num{font-family:'Cinzel',serif;font-size:.64rem;letter-spacing:5px;
+        color:rgba(183,155,123,.35);display:block;margin-bottom:1.4rem}
+.ms-title{font-family:'Cinzel',serif;font-size:clamp(2.2rem,4vw,3.8rem);
+          letter-spacing:2px;color:var(--text);margin-bottom:1rem}
+.ms-subtitle{font-size:.9rem;font-weight:300;color:rgba(244,241,234,.55);
+             line-height:1.9;max-width:540px}
+/* Sub-category label */
+.sub-cat{font-family:'Cinzel',serif;font-size:.84rem;letter-spacing:5px;
+         color:rgba(183,155,123,.55);text-transform:uppercase;
+         padding:2.5rem 0 1.5rem;border-top:1px solid var(--border);
+         display:block;margin-top:1rem}
+.sub-cat:first-child{border-top:none;padding-top:0}
+/* Item list */
+.item-list{list-style:none}
+.item{display:flex;align-items:baseline;justify-content:space-between;
+      padding:1.4rem 0;border-bottom:1px solid rgba(183,155,123,.07);
+      gap:2rem;position:relative;overflow:hidden}
+.item::before{content:'';position:absolute;bottom:0;left:0;
+              width:0;height:1px;background:rgba(183,155,123,.22);
+              transition:width .5s var(--ease)}
+.item:hover::before{width:100%}
+.item-left{flex:1;min-width:0}
+.item-name{font-family:'Cinzel',serif;font-size:clamp(1.05rem,1.7vw,1.3rem);
+           letter-spacing:1px;color:var(--text);margin-bottom:.35rem;
+           display:block}
+.item-sub{font-size:.8rem;font-weight:300;color:rgba(244,241,234,.5);
+          letter-spacing:.5px;line-height:1.7}
+.item-tag{display:inline-block;font-size:.54rem;letter-spacing:3px;
+          font-weight:600;text-transform:uppercase;
+          padding:.18rem .55rem;border:1px solid rgba(183,155,123,.28);
+          color:rgba(183,155,123,.55);margin-left:.7rem;vertical-align:middle}
+.item-right{flex-shrink:0;text-align:right}
+.item-vitola{font-size:.7rem;letter-spacing:2px;color:rgba(244,241,234,.36);
+             font-weight:300;display:block;margin-bottom:.25rem}
+.item-origin{font-size:.68rem;letter-spacing:3px;font-weight:600;
+             color:rgba(183,155,123,.55);text-transform:uppercase}
+/* Special featured item */
+.item--feat .item-name{color:var(--gold2)}
+.item--feat .item-tag{border-color:var(--gold);color:var(--gold)}
+/* Cocktail grid */
+.cocktail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2px}
+.cocktail-card{padding:2.4rem;background:var(--bg2);
+               border:1px solid rgba(183,155,123,.06);
+               transition:border-color .4s,background .4s;position:relative;overflow:hidden}
+.cocktail-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+                        background:var(--gold);transform:scaleX(0);transform-origin:left;
+                        transition:transform .5s var(--ease)}
+.cocktail-card:hover::before{transform:scaleX(1)}
+.cocktail-card:hover{background:var(--bg3);border-color:rgba(183,155,123,.14)}
+.cc-num{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:5px;
+        color:rgba(183,155,123,.3);display:block;margin-bottom:1rem}
+.cc-name{font-family:'Cinzel',serif;font-size:clamp(1rem,1.6vw,1.3rem);
+         letter-spacing:1.5px;color:var(--text);margin-bottom:.6rem;display:block}
+.cc-base{font-size:.76rem;letter-spacing:2px;color:rgba(183,155,123,.6);
+         font-weight:400;margin-bottom:1rem;display:block}
+.cc-desc{font-size:.85rem;font-weight:300;color:var(--body);line-height:1.9}
+/* CTA section */
+#menu-cta{padding:10vh 8vw;text-align:center;
+          background:linear-gradient(to bottom,var(--bg) 0%,var(--bg2) 100%)}
+.cta-title{font-family:'Cinzel',serif;font-size:clamp(2rem,4vw,3.6rem);
+           letter-spacing:3px;color:var(--text);margin-bottom:1.6rem}
+.cta-title span{color:var(--gold)}
+.cta-sub{font-size:.92rem;font-weight:300;color:rgba(244,241,234,.55);
+         margin-bottom:2.8rem;line-height:1.9}
+.cta-row{display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap}
+.btn-gold{font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:3px;
+          padding:.8rem 2.2rem;border:1px solid rgba(183,155,123,.38);
+          color:var(--gold);text-transform:uppercase;display:inline-block;
+          transition:.42s var(--ease);position:relative;overflow:hidden}
+.btn-gold::before{content:'';position:absolute;inset:0;background:var(--gold);
+                  transform:scaleX(0);transform-origin:right;
+                  transition:transform .42s var(--ease);z-index:-1}
+.btn-gold:hover{color:var(--bg)}.btn-gold:hover::before{transform:scaleX(1);transform-origin:left}
+/* Footer */
+footer{background:var(--bg2);padding:5vh 8vw;border-top:1px solid var(--border)}
+.ft-in{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:2rem}
+.ft-logo img{width:96px;opacity:.5;transition:opacity .3s}
+.ft-logo:hover img{opacity:.75}
+.ft-nav{display:flex;gap:2.4rem;flex-wrap:wrap}
+.ft-nav a{font-size:.68rem;letter-spacing:3px;font-weight:600;text-transform:uppercase;
+          color:rgba(244,241,234,.3);transition:color .3s}
+.ft-nav a:hover{color:var(--gold)}
+.ft-legal{text-align:right}
+.ft-legal span{display:block;font-size:.64rem;letter-spacing:2px;
+               color:rgba(244,241,234,.22);font-weight:300;line-height:2.1}
+.ft-credit a{color:rgba(183,155,123,.45);text-decoration:none;transition:color .3s}
+.ft-credit a:hover{color:var(--gold)}
+/* Safari / WebKit */
+#nav.s{-webkit-backdrop-filter:blur(24px)}
+#mm{-webkit-clip-path:inset(0 100% 0 0)}
+#mm.o{-webkit-clip-path:inset(0 0% 0 0)}
+@media(pointer:coarse){
+  *,*::before,*::after{cursor:auto!important}
+  #cur,#cur-r{display:none!important}
+}
+/* Tablet + Mobile */
+@media(max-width:900px){
+  .nm{display:none}
+  .bur{display:flex}
+  .cat-tabs{padding:0 4vw;overflow-x:auto;gap:0;scrollbar-width:none}
+  .cat-tabs::-webkit-scrollbar{display:none}
+  .cat-tab{padding:1.2rem 1rem;white-space:nowrap;flex-shrink:0}
+  .item{flex-direction:column;gap:.5rem;align-items:flex-start}
+  .item-right{text-align:left}
+  .cocktail-grid{grid-template-columns:1fr}
+  .ft-in{flex-direction:column;align-items:flex-start;gap:1.6rem}
+  .ft-nav{gap:1.4rem}
+  .ft-legal{text-align:left}
+}
+@media(max-width:540px){
+  .mh-title{font-size:clamp(1.8rem,9vw,2.8rem)}
+  .ft-nav{flex-direction:column;gap:1rem}
+  footer{padding-bottom:max(1.5rem,env(safe-area-inset-bottom))}
+}
+</style>
+</head>
+<body>
+<div id="pw"></div>
+<div id="cur"></div>
+<div id="cur-r"></div>
+
+<nav id="nav" aria-label="Menu navigácia">
+  <a href="index.html" class="nl" aria-label="HUMO domov" data-transition>
+    <img src="HUMO_logo.svg" alt="HUMO Cigar Lounge" width="145" height="109">
+  </a>
+  <ul class="nm" role="list">
+    <li><a href="index.html#statement" data-transition>Filozofia</a></li>
+    <li><a href="menu.html" class="active">Menu</a></li>
+    <li><a href="index.html#gallery" data-transition>Kolekcia</a></li>
+    <li><a href="index.html#reservation" data-transition>Kontakt</a></li>
+  </ul>
+  <a href="index.html" class="nav-back" data-transition>← Späť</a>
+  <button class="bur" id="bur" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div id="mm" aria-hidden="true">
+  <ul class="mm-list" role="list">
+    <li><a href="index.html" data-transition>Domov</a></li>
+    <li><a href="#cigary">Cigary</a></li>
+    <li><a href="#spirits">Whisky &amp; Spirits</a></li>
+    <li><a href="#koktaily">Koktaily</a></li>
+  </ul>
+</div>
+
+<header id="menu-hero">
+  <div class="mh-deco" aria-hidden="true">MENU</div>
+  <p class="mh-kicker">HUMO Cigar Lounge · Gorkého 5 · Bratislava</p>
+  <h1 class="mh-title">
+    Naše<br><span>Menu</span>
+  </h1>
+  <p class="mh-desc">Pečlivý výber prémiových cigár, vzácnych spirits a originálnych koktailov. Každá položka bola vybraná s rovnakou vášňou a precíznosťou, akú si skutočné požitky zaslúžia.</p>
+</header>
+
+<!-- Sticky category tabs -->
+<nav class="cat-tabs" aria-label="Kategórie menu">
+  <button class="cat-tab active" data-target="cigary">Cigary</button>
+  <button class="cat-tab" data-target="spirits">Whisky &amp; Spirits</button>
+  <button class="cat-tab" data-target="koktaily">Koktaily</button>
+</nav>
+
+<!-- ══ CIGARY ══════════════════════════════════════ -->
+<section id="cigary" class="menu-section" aria-labelledby="cigary-h">
+  <div class="ms-header">
+    <span class="ms-num">01</span>
+    <h2 id="cigary-h" class="ms-title">Cigary</h2>
+    <p class="ms-subtitle">Náš sortiment zahŕňa prémiové kubánske aj non-havana cigary z renomovaných tabakových regiónov. Všetky kubánske cigary pochádzajú z certifikovaného dovozu.</p>
+  </div>
+
+  <span class="sub-cat">Kubánske / Habanos S.A.</span>
+  <ul class="item-list">
+    <li class="item item--feat">
+      <div class="item-left">
+        <span class="item-name">Cohiba Siglo VI <span class="item-tag">LIMITOVANÁ</span></span>
+        <span class="item-sub">Habanos S.A. · Vitola: Gordito · Ring gauge: 52 · Dĺžka: 150 mm<br>Jemná, krémová, s tónmi cédrového dreva a korenín. Ideálna k single maltu.</span>
+      </div>
+      <div class="item-right">
+        <span class="item-vitola">Robusto Extra</span>
+        <span class="item-origin">Kuba</span>
+      </div>
+    </li>
+    <li class="item">
+      <div class="item-left">
+        <span class="item-name">Montecristo No. 2</span>
+        <span class="item-sub">Habanos S.A. · Vitola: Torpedo · Ring gauge: 52 · Dĺžka: 156 mm<br>Bohatá a komplexná. Čokoláda, orechy a jemné bylinky v dlhom dyme.</span>
+      </div>
+      <div class="item-right">
+        <span class="item-vitola">Torpedo</span>
+        <span class="item-origin">Kuba</span>
+      </div>
+    </li>
+    <li class="item">
+      <div class="item-left">
+        <span class="item-name">Romeo y Julieta Churchill</span>
+        <span class="item-sub">Habanos S.A. · Vitola: Churchill · Ring gauge: 47 · Dĺžka: 178 mm<br>Elegantná a dlhá. Drevo, káva a bylinky. Ideálna pre dlhý večer.</span>
+      </div>
+      <div class="item-right">
+        <span class="item-vitola">Churchill</span>
+        <span class="item-origin">Kuba</span>
+      </div>
+    </li>
+    <li class="item">
+      <div class="item-left">
+        <span class="item-name">Partagás Serie D No. 4</span>
+        <span class="item-sub">Habanos S.A. · Vitola: Robusto · Ring gauge: 50 · Dĺžka: 124 mm<br>Silná a zemitá. Kožené tóny, korenie, tmavá káva. Pre znalcov silnejšieho dymu.</span>
+      </div>
+      <div class="item-right">
+        <span class="item-vitola">Robusto</span>
+        <span class="item-origin">Kuba</span>
+      </div>
+    </li>
+    <li class="item">
+      <div class="item-left">
+        <span class="item-name">Hoyo de Monterrey Epicure No. 2</span>
+        <span class="item-sub">Habanos S.A. · Ring gauge: 50 · Dĺžka: 124 mm<br>Jemná a lahodná. Cédrové drevo, sladká krémová chuť. Skvelá pre začiatočníkov.</span>
+      </div>
+      <div class="item-right">
+        <span class="item-vitola">Robusto</span>
+        <span class="item-origin">Kuba</span>
+      </div>
+    </li>
+    <li class="item">
+      <div class="item-left">
+        <span class="item-name">Trinidad Fundadores</span>
+        <span class="item-sub">Habanos S.A. · Vitola: Laguito No. 1 · Ring gauge: 40 · Dĺžka: 192 mm<br>Vzácna a rafinovaná. Kvetinové tóny, cédrové drevo, ľahká zemitosť.</span>
+      </div>
+      <div class="item-right">
+        <span class="item-vitola">Laguito No. 1</span>
+        <span class="item-origin">Kuba</span>
+      </div>
+    </li>
+  </ul>
+
+  <span class="sub-cat">Non-Havana</span>
+  <ul class="item-list">
+    <li class="item item--feat">
+      <div class="item-left">
+        <span class="item-name">Arturo Fuente Opus X <span class="item-tag">EXKLUZÍVNA</span></span>
+        <span class="item-sub">Arturo Fuente · Double Corona · Ring gauge: 49 · Dĺžka: 191 mm<br>Legendárna nicaraguajská cigara. Plná, komplexná, s tónmi kávy, čokolády a korenín.</span>
+      </div>
+      <div class="item-right">
+        <span class="item-vitola">Double Corona</span>
+        <span class="item-origin">Rep. Dominicana</span>
+      </div>
+    </li>
+    <li class="item">
+      <div class="item-left">
+        <span class="item-name">Padrón 1964 Anniversary Maduro</span>
+        <span class="item-sub">Padrón Cigars · Corona · Ring gauge: 46 · Dĺžka: 143 mm<br>Sladká, krémová a bohatá. Fermentované maduro obaly dodávajú hlbokú čokoládovú chuť.</span>
+      </div>
+      <div class="item-right">
+        <span class="item-vitola">Corona</span>
+        <span class="item-origin">Nikaragua</span>
+      </div>
+    </li>
+    <li class="item">
+      <div class="item-left">
+        <span class="item-name">Liga Privada No. 9</span>
+        <span class="item-sub">Drew Estate · Toro · Ring gauge: 52 · Dĺžka: 152 mm<br>Intenzívna a tmavá. Espresso, tmavá čokoláda, kožené tóny. Cult classic.</span>
+      </div>
+      <div class="item-right">
+        <span class="item-vitola">Toro</span>
+        <span class="item-origin">Nikaragua</span>
+      </div>
+    </li>
+    <li class="item">
+      <div class="item-left">
+        <span class="item-name">My Father Le Bijou 1922</span>
+        <span class="item-sub">My Father Cigars · Torpedo · Ring gauge: 54 · Dĺžka: 156 mm<br>Husté a plné. Korenie, tmavé ovocie, zemité tóny v harmonickej kombinácii.</span>
+      </div>
+      <div class="item-right">
+        <span class="item-vitola">Torpedo</span>
+        <span class="item-origin">Nikaragua</span>
+      </div>
+    </li>
+    <li class="item">
+      <div class="item-left">
+        <span class="item-name">Davidoff Winston Churchill The Late Hour</span>
+        <span class="item-sub">Davidoff · Robusto · Ring gauge: 50 · Dĺžka: 127 mm<br>Elegantný a vyvážený. Drevo, koža, jemné koreniny. Prémiová švajčiarska značka.</span>
+      </div>
+      <div class="item-right">
+        <span class="item-vitola">Robusto</span>
+        <span class="item-origin">Rep. Dominicana</span>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ══ WHISKY & SPIRITS ════════════════════════════ -->
+<section id="spirits" class="menu-section" aria-labelledby="spirits-h">
+  <div class="ms-header">
+    <span class="ms-num">02</span>
+    <h2 id="spirits-h" class="ms-title">Whisky &amp; Spirits</h2>
+    <p class="ms-subtitle">Viac ako 120 starostlivo vybraných etikiet zo škótskych destilérií, japonských majstrov, írskych tradícií, amerických bourbon tvorcov a vzácnych karibských rumov.</p>
+  </div>
+
+  <span class="sub-cat">Škótska Whisky · Single Malt Scotch</span>
+  <ul class="item-list">
+    <li class="item item--feat">
+      <div class="item-left">
+        <span class="item-name">The Macallan 18 Sherry Oak <span class="item-tag">ODPORÚČAME</span></span>
+        <span class="item-sub">Speyside · 18 rokov · 43% ABV<br>Bohatá, sušené ovocie, vanilka, koreniny. Ikonický sherried Speyside single malt.</span>
+      </div>
+      <div class="item-right">
+        <span class="item-vitola">Speyside</span>
+        <span class="item-origin">Škótsko</span>
+      </div>
+    </li>
+    <li class="item">
+      <div class="item-left">
+        <span class="item-name">Glenfarclas 25</span>
+        <span class="item-sub">Speyside · 25 rokov · 43% ABV<br>Hlboká sherry sladkosť, sušené slivky, čokoláda. Rodinná destilátorka od roku 1836.</span>
+      </div>
+      <div class="item-right">
+        <span class="item-vitola">Speyside</span>
+        <span class="item-origin">Škótsko</span>
+      </div>
+    </li>
+    <li class="item">
+      <div class="item-left">
+        <span class="item-name">Bowmore 18</span>
+        <span class="item-sub">Islay · 18 rokov · 43% ABV<br>Torf, more, med a citrusy. Klasický Islay single malt v dokonalej rovnováhe.</span>
+      </div>
+      <div class="item-right">
+        <span class="item-vitola">Islay</span>
+        <span class="item-origin">Škótsko</span>
+      </div>
+    </li>
+    <li class="item">
+      <div class="item-left">
+        <span class="item-name">Springbank 15</span>
+        <span class="item-sub">Campbeltown · 15 rokov · 46% ABV<br>Jemný torf, slanosť, ovocie, vanilka. Jedna z najcenených destilériek Škótska.</span>
+      </div>
+      <div class="item-right">
+        <span class="item-vitola">Campbeltown</span>
+        <span class="item-origin">Škótsko</span>
+      </div>
+    </li>
+  </ul>
+
+  <span class="sub-cat">Japonská Whisky</span>
+  <ul class="item-list">
+    <li class="item item--feat">
+      <div class="item-left">
+        <span class="item-name">Nikka Whisky From the Barrel <span class="item-tag">BESTSELLER</span></span>
+        <span class="item-sub">Japonsko · bez vekovej designácie · 51.4% ABV<br>Intenzívna a bohatá. Vanilka, korenie, sušené ovocie. Kultová japonská whisky.</span>
+      </div>
+      <div class="item-right">
+        <span class="item-vitola">Blended Malt</span>
+        <span class="item-origin">Japonsko</span>
+      </div>
+    </li>
+    <li class="item">
+      <div class="item-left">
+        <span class="item-name">Hakushu 12</span>
+        <span class="item-sub">Japonsko · 12 rokov · 43% ABV<br>Sviežosť lesa, zelené ovocie, jemný dym. Unikátna horská destilárka Suntory.</span>
+      </div>
+      <div class="item-right">
+        <span class="item-vitola">Single Malt</span>
+        <span class="item-origin">Japonsko</span>
+      </div>
+    </li>
+  </ul>
+
+  <span class="sub-cat">Rum &amp; Koňak</span>
+  <ul class="item-list">
+    <li class="item item--feat">
+      <div class="item-left">
+        <span class="item-name">Zacapa 23 Solera <span class="item-tag">ODPORÚČAME</span></span>
+        <span class="item-sub">Guatemala · Solera systém · 40% ABV<br>Vanilka, sušené ovocie, med, čokoláda. Jeden z najlepšie hodnotených rumov sveta.</span>
+      </div>
+      <div class="item-right">
+        <span class="item-vitola">Solera</span>
+        <span class="item-origin">Guatemela</span>
+      </div>
+    </li>
+    <li class="item">
+      <div class="item-left">
+        <span class="item-name">Diplomatico Reserva Exclusiva</span>
+        <span class="item-sub">Venezuela · 12 rokov · 40% ABV<br>Bohatá sladkosť, karamel, pomaranč, škorica. Ideálny spoločník k maduro cigare.</span>
+      </div>
+      <div class="item-right">
+        <span class="item-vitola">Aged Rum</span>
+        <span class="item-origin">Venezuela</span>
+      </div>
+    </li>
+    <li class="item">
+      <div class="item-left">
+        <span class="item-name">Hennessy XO</span>
+        <span class="item-sub">Cognac, Francúzsko · Fine Champagne · 40% ABV<br>Komplexné, kvetinové, suché ovocie a cédrové drevo. Klasický koňak svetového formátu.</span>
+      </div>
+      <div class="item-right">
+        <span class="item-vitola">XO Cognac</span>
+        <span class="item-origin">Francúzsko</span>
+      </div>
+    </li>
+    <li class="item">
+      <div class="item-left">
+        <span class="item-name">Mezcal El Silencio Espadin</span>
+        <span class="item-sub">Oaxaca, Mexiko · tradičná výroba · 40% ABV<br>Dymový, zemitý, citrusový. Pre tých, čo hľadajú niečo skutočne iné.</span>
+      </div>
+      <div class="item-right">
+        <span class="item-vitola">Mezcal</span>
+        <span class="item-origin">Mexiko</span>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ══ KOKTAILY ════════════════════════════════════ -->
+<section id="koktaily" class="menu-section" aria-labelledby="koktaily-h">
+  <div class="ms-header">
+    <span class="ms-num">03</span>
+    <h2 id="koktaily-h" class="ms-title">Koktaily</h2>
+    <p class="ms-subtitle">Naši barmani kombinujú klasické recepty s originálnymi akcentmi. Každý koktail je navrhnutý tak, aby doplnil vašu cigaru — nie prekryl jej chuť.</p>
+  </div>
+
+  <div class="cocktail-grid">
+    <div class="cocktail-card">
+      <span class="cc-num">01</span>
+      <span class="cc-name">HUMO Old Fashioned</span>
+      <span class="cc-base">Bourbon · Demerara · Angostura · Smoke</span>
+      <p class="cc-desc">Naša verzia klasiky. Bourbonom fajčená čerešňa, drevené uhlie, hladký a dlhý finish. Koktail, ktorý začal príbeh HUMO.</p>
+    </div>
+    <div class="cocktail-card">
+      <span class="cc-num">02</span>
+      <span class="cc-name">Gorkého Negroni</span>
+      <span class="cc-base">Gin · Carpano Antica · Campari · Orange</span>
+      <p class="cc-desc">Horkosladký twist na taliansky klasik. Botanické tóny ginu v harmonii s Campari a sladkým vermútom.</p>
+    </div>
+    <div class="cocktail-card">
+      <span class="cc-num">03</span>
+      <span class="cc-name">Havana Sidecar</span>
+      <span class="cc-base">Rum · Cointreau · Citrus · Agave</span>
+      <p class="cc-desc">Kubánska inšpirácia klasického Sidecar. Rum namiesto koňaku, agávový sirup a čerstvý citrus. Sviežosť a hĺbka.</p>
+    </div>
+    <div class="cocktail-card">
+      <span class="cc-num">04</span>
+      <span class="cc-name">Smoky Whisky Sour</span>
+      <span class="cc-base">Mezcal · Whisky · Lemon · Egg White</span>
+      <p class="cc-desc">Zamatová pena z bielka vajca, dymový mezcal a jemná kyslosť citrónu. Koktail s príbehom.</p>
+    </div>
+    <div class="cocktail-card">
+      <span class="cc-num">05</span>
+      <span class="cc-name">Dark &amp; Stormy</span>
+      <span class="cc-base">Dark Rum · Ginger Beer · Lime · Bitters</span>
+      <p class="cc-desc">Klasika tropických barov. Tmavý rum, pikantný zázvorový nápoj a svieži limetový džús. Ideálna cez teplé letné večery.</p>
+    </div>
+    <div class="cocktail-card">
+      <span class="cc-num">06</span>
+      <span class="cc-name">Bratislava Boulevardier</span>
+      <span class="cc-base">Bourbon · Sweet Vermouth · Campari · Cherry</span>
+      <p class="cc-desc">Bratrislava verzia klasického parížskeho koktailu. Bohatý bourbon s horkosladkými tónmi Campari a vermútu.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="menu-cta">
+  <h2 class="cta-title">Zarezervujte si <span>stôl</span></h2>
+  <p class="cta-sub">Utorok — Nedeľa · 17:00 – 01:00<br>Gorkého 5, 811 01 Bratislava, Staré Mesto</p>
+  <div class="cta-row">
+    <a href="mailto:info@humo.sk" class="btn-gold magnetic">info@humo.sk</a>
+    <a href="index.html" class="btn-gold magnetic" data-transition>← Späť na úvod</a>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-in">
+    <a href="index.html" class="ft-logo" data-transition>
+      <img src="HUMO_logo.svg" alt="HUMO" width="96" height="72">
+    </a>
+    <nav class="ft-nav">
+      <a href="index.html#statement" data-transition>Filozofia</a>
+      <a href="menu.html">Menu</a>
+      <a href="index.html#gallery" data-transition>Kolekcia</a>
+      <a href="index.html#reservation" data-transition>Kontakt</a>
+      <a href="gdpr.html" data-transition>Ochrana údajov</a>
+    </nav>
+    <div class="ft-legal">
+      <span>© 2025 EUPHORY K&amp;I, s. r. o.</span>
+      <span>Gorkého 5 · 811 01 Bratislava</span>
+      <span class="ft-credit">Vytvorilo: <a href="https://alysum.sk" target="_blank" rel="noopener">Alysum cs</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+gsap.registerPlugin(ScrollTrigger);
+function qs(s,c){return(c||document).querySelector(s)}
+function qsa(s,c){return[].slice.call((c||document).querySelectorAll(s))}
+
+/* Cursor */
+var cur=qs('#cur'),curR=qs('#cur-r');
+document.addEventListener('mousemove',function(e){
+  gsap.to(cur,{x:e.clientX,y:e.clientY,duration:.06,overwrite:true});
+  gsap.to(curR,{x:e.clientX,y:e.clientY,duration:.42,ease:'power3.out',overwrite:true});
+});
+qsa('a,button,.cocktail-card').forEach(function(el){
+  el.addEventListener('mouseenter',function(){curR.classList.add('h')});
+  el.addEventListener('mouseleave',function(){curR.classList.remove('h')});
+});
+
+/* Page wipe — IN (reveal page) */
+var pw=qs('#pw');
+gsap.to(pw,{scaleX:0,transformOrigin:'right center',duration:.7,ease:'power4.out',delay:.1});
+
+/* Page wipe — OUT (leave page) */
+qsa('[data-transition]').forEach(function(el){
+  el.addEventListener('click',function(e){
+    var h=el.getAttribute('href');
+    if(!h||h==='#') return;
+    e.preventDefault();
+    gsap.to(pw,{scaleX:1,transformOrigin:'left center',duration:.55,ease:'power4.in',
+      onComplete:function(){window.location.href=h}
+    });
+  });
+});
+
+/* Magnetic */
+qsa('.magnetic').forEach(function(el){
+  el.addEventListener('mousemove',function(e){
+    var r=el.getBoundingClientRect();
+    gsap.to(el,{x:(e.clientX-r.left-r.width/2)*.32,
+                y:(e.clientY-r.top-r.height/2)*.32,
+                duration:.45,ease:'power2.out'});
+  });
+  el.addEventListener('mouseleave',function(){
+    gsap.to(el,{x:0,y:0,duration:.75,ease:'elastic.out(1,.3)'});
+  });
+});
+
+/* Burger */
+var bur=qs('#bur'),mm=qs('#mm'),mmO=false;
+bur.addEventListener('click',function(){
+  mmO=!mmO;mm.classList.toggle('o',mmO);
+  bur.setAttribute('aria-expanded',mmO);
+  var sp=bur.querySelectorAll('span');
+  sp[0].style.transform=mmO?'rotate(45deg) translate(4px,4px)':'';
+  sp[1].style.opacity=mmO?0:1;
+  sp[2].style.transform=mmO?'rotate(-45deg) translate(4px,-4px)':'';
+});
+qsa('#mm a').forEach(function(a){
+  a.addEventListener('click',function(){
+    mmO=false;mm.classList.remove('o');
+    bur.setAttribute('aria-expanded','false');
+    bur.querySelectorAll('span').forEach(function(s){s.style.transform='';s.style.opacity='';});
+  });
+});
+
+/* Category tab active state on scroll */
+var sections=qsa('.menu-section');
+var tabs=qsa('.cat-tab');
+function setActiveTab(id){
+  tabs.forEach(function(t){t.classList.toggle('active',t.dataset.target===id)});
+}
+var io=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting) setActiveTab(e.target.id);
+  });
+},{rootMargin:'-40% 0px -55% 0px'});
+sections.forEach(function(s){io.observe(s)});
+
+/* Tab click scroll */
+tabs.forEach(function(t){
+  t.addEventListener('click',function(){
+    var target=document.getElementById(t.dataset.target);
+    if(target){
+      var top=target.getBoundingClientRect().top+window.scrollY-120;
+      window.scrollTo({top:top,behavior:'smooth'});
+    }
+  });
+});
+
+/* Scroll animations */
+gsap.from('.mh-kicker',{opacity:0,y:12,duration:.8,delay:.3,ease:'power3.out'});
+gsap.from('.mh-title',{opacity:0,y:24,duration:1.0,delay:.45,ease:'power3.out'});
+gsap.from('.mh-desc',{opacity:0,y:16,duration:.8,delay:.65,ease:'power3.out'});
+
+qsa('.menu-section').forEach(function(sec){
+  gsap.from(sec.querySelector('.ms-header'),{
+    opacity:0,y:28,duration:.9,ease:'power3.out',
+    scrollTrigger:{trigger:sec,start:'top 76%',once:true}
+  });
+  gsap.from(qsa('.item',sec),{
+    opacity:0,y:16,duration:.7,stagger:.06,ease:'power3.out',
+    scrollTrigger:{trigger:sec.querySelector('.item-list')||sec,start:'top 74%',once:true}
+  });
+  var cgrid=sec.querySelector('.cocktail-grid');
+  if(cgrid){
+    gsap.from(qsa('.cocktail-card',cgrid),{
+      opacity:0,y:24,duration:.7,stagger:.08,ease:'power3.out',
+      scrollTrigger:{trigger:cgrid,start:'top 74%',once:true}
+    });
+  }
+});
+
+gsap.from('#menu-cta .cta-title, #menu-cta .cta-sub, #menu-cta .cta-row',{
+  opacity:0,y:20,duration:.8,stagger:.12,ease:'power3.out',
+  scrollTrigger:{trigger:'#menu-cta',start:'top 78%',once:true}
+});
+
+/* Smooth anchor on page load from hash */
+window.addEventListener('load',function(){
+  if(window.location.hash){
+    var t=document.querySelector(window.location.hash);
+    if(t) setTimeout(function(){
+      window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-120,behavior:'smooth'});
+    },800);
+  }
+});
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HUMO Cigar Lounge Bratislava | Prémiové Cigary, Whisky & Rum | Gorkého 5</title>
+<meta name="description" content="HUMO je exkluzívny cigar lounge v srdci Bratislavy. Výber 70+ prémiových kubánskych cigár, vzácnych whisky a rhumu. Gorkého 5, Staré Mesto. Rezervácia: info@humo.sk">
+<meta name="keywords" content="cigar lounge Bratislava, cigar bar Bratislava, cigary Bratislava, whisky bar Bratislava, prémiové cigary, humidor Bratislava, Gorkého 5, luxusný bar Bratislava">
+<meta property="og:title" content="HUMO Cigar Lounge Bratislava">
+<meta property="og:description" content="Exkluzívny cigar lounge v Starom Meste. Prémiové cigary, whisky, rum. Gorkého 5, Bratislava.">
+<meta property="og:type" content="restaurant">
+<link rel="canonical" href="https://humo.sk/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BarOrPub","name":"HUMO Cigar Lounge","description":"Exkluzívny cigar lounge v Starom Meste v Bratislave. Prémiové kubánske cigary, vzácne whisky a rumy.","url":"https://humo.sk","email":"info@humo.sk","address":{"@type":"PostalAddress","streetAddress":"Gorkého 5","addressLocality":"Bratislava","addressRegion":"Staré Mesto","postalCode":"811 01","addressCountry":"SK"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"17:00","closes":"01:00"}],"priceRange":"€€€€","servesCuisine":["Cigars","Whisky","Rum","Cocktails"]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<style>
+:root{
+  --bg:#080b07;--bg2:#0c0f0b;--bg3:#111510;
+  --gold:#b79b7b;--gold2:#d4b896;
+  --text:#f4f1ea;--body:rgba(244,241,234,.72);--dim:rgba(244,241,234,.42);
+  --border:rgba(183,155,123,.14);
+  --ease:cubic-bezier(.23,1,.32,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;cursor:none!important}
+html{scroll-behavior:auto;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:'Montserrat',sans-serif;
+     overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button{background:none;border:none;font-family:inherit;color:inherit}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.028;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:256px}
+/* Page wipe */
+#pw{position:fixed;inset:0;background:var(--gold);z-index:99990;
+    transform:scaleX(0);transform-origin:left center;pointer-events:none}
+/* ── CURSOR */
+#cur{width:5px;height:5px;background:var(--gold);border-radius:50%;
+     position:fixed;pointer-events:none;z-index:100001;transform:translate(-50%,-50%)}
+#cur-r{width:28px;height:28px;border:1px solid rgba(183,155,123,.4);border-radius:50%;
+       position:fixed;pointer-events:none;z-index:100000;transform:translate(-50%,-50%);
+       transition:width .4s var(--ease),height .4s var(--ease),
+                  border-color .4s,background .4s}
+#cur-r.h{width:52px;height:52px;border-color:rgba(183,155,123,.2)}
+#cur-r.hv{width:78px;height:78px;background:rgba(183,155,123,.07);
+          border-color:rgba(183,155,123,.06)}
+#cur-lbl{position:fixed;pointer-events:none;z-index:100002;
+         font-size:.48rem;letter-spacing:3px;font-weight:600;
+         color:var(--bg);background:var(--gold);padding:.2rem .65rem;
+         transform:translate(-50%,calc(-100% - 14px));
+         opacity:0;white-space:nowrap;transition:opacity .22s}
+/* ── PROGRESS */
+#prog{position:fixed;top:0;left:0;height:1px;z-index:99992;
+      background:var(--gold);width:0;box-shadow:0 0 6px rgba(183,155,123,.5)}
+/* ── PRELOADER */
+#preloader{position:fixed;inset:0;background:#060805;z-index:99998;
+           display:flex;flex-direction:column;align-items:center;justify-content:center}
+.pl-logo{width:200px;margin-bottom:52px}
+.pl-bar{width:160px;height:1px;background:rgba(183,155,123,.1)}
+.pl-fill{height:1px;background:var(--gold);width:0;box-shadow:0 0 8px rgba(183,155,123,.45)}
+.pl-pct{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:6px;
+        color:rgba(183,155,123,.3);margin-top:13px}
+/* ── AGE GATE */
+#ag{position:fixed;inset:0;background:var(--bg);z-index:99997;
+    display:flex;flex-direction:column;justify-content:center;
+    align-items:center;text-align:center;padding:2rem;overflow:hidden}
+.ag-logo{width:320px;max-width:78vw;margin-bottom:3.5rem}
+.ag-kicker{font-size:.72rem;letter-spacing:8px;color:rgba(183,155,123,.55);
+           text-transform:uppercase;margin-bottom:1rem;font-weight:300}
+.ag-q{font-family:'Cinzel',serif;font-size:clamp(1.3rem,2.8vw,1.9rem);
+      letter-spacing:3px;color:var(--text);margin-bottom:3rem}
+.ag-btns{display:flex;gap:1.8rem;justify-content:center}
+.ag-btn{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:3px;
+        padding:1rem 2.8rem;border:1px solid rgba(183,155,123,.38);
+        color:var(--gold);text-transform:uppercase;cursor:pointer!important;
+        transition:.4s var(--ease);position:relative;overflow:hidden}
+.ag-btn::before{content:'';position:absolute;inset:0;background:var(--gold);
+                transform:scaleX(0);transform-origin:right;
+                transition:transform .42s var(--ease);z-index:-1}
+.ag-btn:hover{color:var(--bg)}.ag-btn:hover::before{transform:scaleX(1);transform-origin:left}
+.ag-note{font-size:.68rem;letter-spacing:1.5px;color:rgba(244,241,234,.32);
+         font-weight:300;max-width:420px;line-height:2.2;margin-top:2.4rem}
+/* ── NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:9000;padding:2.2rem 6vw;
+     display:flex;align-items:center;justify-content:space-between;
+     transition:padding .5s var(--ease),background .5s,border-color .5s;
+     border-bottom:1px solid transparent}
+#nav.s{padding:1.1rem 6vw;background:rgba(8,11,7,.97);
+       backdrop-filter:blur(24px);border-color:var(--border)}
+.nl{flex-shrink:0}
+.nl img{width:132px;height:auto;display:block;transition:width .4s var(--ease)}
+#nav.s .nl img{width:108px}
+.nm{display:flex;gap:2.4rem;list-style:none;
+    position:absolute;left:50%;transform:translateX(-50%)}
+.nm a{font-size:.72rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;
+      color:rgba(244,241,234,.52);transition:color .3s;padding:4px 0;position:relative}
+.nm a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;
+             background:var(--gold);transition:width .42s var(--ease)}
+.nm a:hover{color:var(--gold)}.nm a:hover::after{width:100%}
+.nc{font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:3px;
+    padding:.62rem 1.6rem;border:1px solid rgba(183,155,123,.36);
+    color:var(--gold);text-transform:uppercase;
+    transition:.42s var(--ease);position:relative;overflow:hidden}
+.nc::before{content:'';position:absolute;inset:0;background:var(--gold);
+            transform:scaleX(0);transform-origin:right;
+            transition:transform .42s var(--ease);z-index:-1}
+.nc:hover{color:var(--bg)}.nc:hover::before{transform:scaleX(1);transform-origin:left}
+.bur{display:none;flex-direction:column;gap:5px;padding:6px;cursor:pointer!important}
+.bur span{display:block;width:22px;height:1px;background:var(--gold);transition:.3s}
+#mm{position:fixed;inset:0;background:var(--bg2);z-index:8500;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    clip-path:inset(0 100% 0 0);transition:clip-path .75s var(--ease)}
+#mm.o{clip-path:inset(0 0% 0 0)}
+.mm-list{list-style:none;text-align:center}
+.mm-list li{padding:.9rem 0;overflow:hidden}
+.mm-list a{font-family:'Cinzel',serif;font-size:clamp(1.9rem,5.5vw,3rem);
+           letter-spacing:6px;color:var(--gold);display:inline-block;
+           transform:translateY(100%);transition:transform .55s var(--ease)}
+#mm.o .mm-list a{transform:translateY(0)}
+/* ── LINE REVEAL UTIL */
+.rlw{display:block;overflow:hidden}
+.rl{display:block}
+/* ── HERO — text at BOTTOM, zero overlap with nav */
+#hero{height:100vh;position:relative;overflow:hidden}
+#h-bg{position:absolute;inset:0;
+      background:url('assets/hero.jpg') 62% center/cover no-repeat;
+      transform-origin:center}
+#h-ov{position:absolute;inset:0;
+      background:
+        linear-gradient(to bottom,rgba(8,11,7,.58) 0%,rgba(8,11,7,.06) 32%,
+                        rgba(8,11,7,.52) 65%,rgba(8,11,7,.96) 100%),
+        linear-gradient(to right,rgba(8,11,7,.94) 0%,rgba(8,11,7,.52) 46%,
+                        rgba(8,11,7,.02) 100%)}
+/* ── SMOKE */
+#smoke-canvas{position:absolute;bottom:0;left:0;right:0;height:80%;
+              width:100%;z-index:2;pointer-events:none;
+              mix-blend-mode:screen;
+              filter:blur(18px)}
+.h-left{position:absolute;bottom:0;left:0;padding:0 8vw 10vh;max-width:58vw;z-index:3}
+.h-label{font-size:.72rem;letter-spacing:5px;color:rgba(183,155,123,.72);
+         font-weight:400;margin-bottom:1.8rem}
+.h-title{font-family:'Cinzel',serif;font-size:clamp(3.4rem,8vw,9.2rem);
+         line-height:.92;letter-spacing:3px;color:var(--text)}
+.h-title .rlw:nth-child(2) .rl{color:var(--gold)}
+.h-rule{width:50px;height:1px;background:rgba(183,155,123,.5);margin:2rem 0}
+.h-desc{font-size:.96rem;font-weight:300;color:var(--body);
+        letter-spacing:.3px;max-width:410px;line-height:2;margin-bottom:1.8rem}
+.h-status{display:flex;align-items:center;gap:.8rem}
+.s-dot{width:6px;height:6px;border-radius:50%;background:#3d8f3d;
+       box-shadow:0 0 8px rgba(61,143,61,.6);flex-shrink:0;transition:.5s}
+.s-dot.closed{background:#555;box-shadow:none}
+.s-txt{font-size:.72rem;letter-spacing:4px;font-weight:600;
+       color:rgba(244,241,234,.75);text-transform:uppercase}
+.s-hrs{font-size:.72rem;letter-spacing:2px;color:rgba(244,241,234,.42);font-weight:300}
+.h-right{position:absolute;bottom:0;right:8vw;padding-bottom:10vh;
+         text-align:right;z-index:3}
+.h-right p{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:4px;
+           color:rgba(183,155,123,.42);margin-bottom:.5rem}
+.scue{position:absolute;bottom:3.5vh;left:50%;transform:translateX(-50%);
+      display:flex;flex-direction:column;align-items:center;gap:9px;z-index:3}
+.scue-t{font-size:.48rem;letter-spacing:5px;color:rgba(183,155,123,.3)}
+.scue-l{width:1px;height:42px;
+        background:linear-gradient(to bottom,rgba(183,155,123,.4),transparent)}
+/* ── MARQUEE */
+.mq{background:var(--gold);overflow:hidden;padding:1.1rem 0}
+.mq-track{display:flex;white-space:nowrap;animation:mq 30s linear infinite}
+.mq-track span{font-size:.56rem;letter-spacing:6px;font-weight:600;
+               color:rgba(8,11,7,.7);text-transform:uppercase;padding:0 .5rem}
+.mq-sep{color:rgba(8,11,7,.3)!important}
+@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* ── SHARED */
+.sec-n{font-family:'Cinzel',serif;font-size:.64rem;letter-spacing:5px;
+       color:rgba(183,155,123,.35);display:block;margin-bottom:1.8rem}
+.lk{font-size:.72rem;letter-spacing:4px;font-weight:600;color:var(--gold);
+    text-transform:uppercase;display:inline-flex;align-items:center;gap:.8rem;
+    position:relative;padding-bottom:3px}
+.lk::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;
+           background:var(--gold);transition:width .42s var(--ease)}
+.lk:hover::after{width:100%}
+.lk-a{display:inline-block;transition:transform .42s var(--ease)}
+.lk:hover .lk-a{transform:translateX(5px)}
+.btn-gold{font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:3px;
+          padding:.8rem 2.2rem;border:1px solid rgba(183,155,123,.38);
+          color:var(--gold);text-transform:uppercase;display:inline-block;
+          transition:.42s var(--ease);position:relative;overflow:hidden}
+.btn-gold::before{content:'';position:absolute;inset:0;background:var(--gold);
+                  transform:scaleX(0);transform-origin:right;
+                  transition:transform .42s var(--ease);z-index:-1}
+.btn-gold:hover{color:var(--bg)}.btn-gold:hover::before{transform:scaleX(1);transform-origin:left}
+/* ── STATEMENT */
+#statement{padding:15vh 8vw;background:var(--bg);position:relative;overflow:hidden}
+.stmt-wrap{max-width:1180px;display:grid;grid-template-columns:90px 1fr;gap:3rem}
+.stmt-big{font-family:'Cinzel',serif;font-size:clamp(2rem,4.6vw,5rem);
+          line-height:1.12;letter-spacing:1.5px;color:var(--text);margin-bottom:2.8rem}
+.ww{display:inline-block;overflow:hidden;vertical-align:top;margin:.1em .15em 0 0}
+.wi{display:inline-block}
+.stmt-body{font-size:.97rem;font-weight:300;color:var(--body);
+           line-height:2.1;max-width:500px;margin-bottom:2.8rem}
+.stmt-deco{position:absolute;right:-4vw;bottom:-4vh;font-family:'Cinzel',serif;
+           font-size:clamp(10rem,22vw,26rem);line-height:.9;
+           color:rgba(183,155,123,.035);letter-spacing:4px;
+           pointer-events:none;user-select:none}
+/* ── MENU TEASER */
+#menu-teaser{background:var(--bg2)}
+.mt-header{padding:8vh 8vw 3vh;display:flex;align-items:baseline;gap:2rem}
+.mt-header h2{font-family:'Cinzel',serif;font-size:clamp(2rem,3.5vw,3.4rem);
+              letter-spacing:3px;color:var(--text)}
+.mt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.mt-card{position:relative;height:68vh;overflow:hidden}
+.mt-ci{position:absolute;inset:0;overflow:hidden}
+.mt-ci img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+.mt-card:hover .mt-ci img{transform:scale(1.06)}
+.mt-ov{position:absolute;inset:0;
+       background:linear-gradient(to top,rgba(8,11,7,.9) 0%,rgba(8,11,7,.35) 55%,rgba(8,11,7,.08) 100%);
+       transition:background .5s}
+.mt-card:hover .mt-ov{
+  background:linear-gradient(to top,rgba(8,11,7,.78) 0%,rgba(8,11,7,.18) 55%,rgba(8,11,7,.04) 100%)}
+.mt-cd{position:absolute;bottom:0;left:0;right:0;padding:2.4rem}
+.mt-cat{font-size:.64rem;letter-spacing:6px;color:rgba(183,155,123,.68);
+        text-transform:uppercase;display:block;margin-bottom:.75rem}
+.mt-title{font-family:'Cinzel',serif;font-size:clamp(1.4rem,2.2vw,2rem);
+          letter-spacing:2px;color:var(--text);display:block;margin-bottom:1.1rem;
+          transition:transform .5s var(--ease)}
+.mt-card:hover .mt-title{transform:translateY(-4px)}
+.mt-desc{font-size:.88rem;font-weight:300;color:rgba(244,241,234,.65);
+         line-height:1.9;margin-bottom:1.2rem}
+.mt-cta{font-size:.66rem;letter-spacing:4px;font-weight:600;color:var(--gold);
+        text-transform:uppercase;opacity:0;transform:translateY(8px);
+        transition:opacity .4s,transform .4s var(--ease);display:inline-flex;
+        align-items:center;gap:.6rem}
+.mt-card:hover .mt-cta{opacity:1;transform:translateY(0)}
+.mt-foot{padding:4vh 8vw 8vh;display:flex;justify-content:center}
+/* ── NUMBERS */
+#numbers{padding:10vh 8vw;background:var(--bg);
+         border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.nums-g{display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;
+        align-items:center;max-width:1080px;margin:0 auto}
+.num-sep{background:var(--border);height:80px}
+.num-item{text-align:center;padding:1.5rem 2rem}
+.num-big{font-family:'Cinzel',serif;font-size:clamp(3.2rem,6.5vw,7rem);
+         line-height:1;color:var(--gold);letter-spacing:2px;margin-bottom:.7rem}
+.num-lab{font-size:.7rem;letter-spacing:6px;font-weight:600;
+         color:var(--text);text-transform:uppercase;margin-bottom:.7rem}
+.num-desc{font-size:.85rem;font-weight:300;color:var(--dim);
+          line-height:1.85;max-width:200px;margin:0 auto}
+/* ── GALLERY */
+#gallery{height:100vh;position:relative;overflow:hidden;background:var(--bg3);z-index:1}
+#gallery::before{content:'';position:absolute;top:0;left:0;
+                 width:calc(8vw + 260px);height:100%;
+                 background:linear-gradient(to right,var(--bg3) 78%,transparent);
+                 z-index:3;pointer-events:none}
+.gal-hdr{position:absolute;top:50%;left:8vw;transform:translateY(-50%);
+         z-index:4;pointer-events:none;padding-right:2.5rem}
+.gal-tw{height:100%;display:flex;align-items:center;overflow:hidden;position:relative;z-index:2}
+.gal-htitle{font-family:'Cinzel',serif;font-size:clamp(2rem,3.5vw,3.4rem);
+            line-height:1.1;letter-spacing:2px;color:var(--text);margin-top:.5rem}
+.gal-track{display:flex;gap:2.2vw;
+           padding:0 8vw 0 calc(8vw + 230px);
+           align-items:center;height:76vh;will-change:transform}
+.gal-card{flex-shrink:0;width:min(38vw,480px);height:100%;
+          position:relative;overflow:hidden;border:1px solid var(--border)}
+.gal-ci{position:absolute;inset:0;overflow:hidden}
+.gal-ci img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+.gal-card:hover .gal-ci img{transform:scale(1.055)}
+.gal-cd{position:absolute;bottom:0;left:0;right:0;padding:2.2rem;
+        background:linear-gradient(to top,rgba(8,11,7,.92) 0%,rgba(8,11,7,.55) 55%,transparent 100%)}
+.gal-ix{font-family:'Cinzel',serif;font-size:.64rem;letter-spacing:5px;
+        color:rgba(183,155,123,.48);display:block;margin-bottom:.85rem}
+.gal-cd h3{font-family:'Cinzel',serif;font-size:clamp(1.1rem,1.8vw,1.6rem);
+           letter-spacing:2px;color:var(--text);margin-bottom:.7rem}
+.gal-cd p{font-size:.85rem;font-weight:300;color:rgba(244,241,234,.65);line-height:1.9}
+.gal-card--dark{background:var(--bg2)}
+.gal-deco-n{font-family:'Cinzel',serif;font-size:clamp(8rem,14vw,16rem);line-height:1;
+            color:rgba(183,155,123,.09);position:absolute;
+            top:50%;left:50%;transform:translate(-50%,-50%);
+            white-space:nowrap;pointer-events:none;z-index:2}
+.gal-card--dark::after{content:'';position:absolute;inset:0;
+                        background:rgba(8,11,7,.52);z-index:1;pointer-events:none}
+.gal-card--dark .gal-cd{background:linear-gradient(to top,rgba(8,11,7,.9) 0%,transparent 70%);
+                         position:absolute;bottom:0;left:0;right:0;
+                         padding:2.2rem;display:flex;flex-direction:column;
+                         justify-content:flex-end;z-index:3}
+.gal-card--dark .gal-cd .lk{margin-top:1.4rem}
+.gal-prog{position:absolute;bottom:0;left:0;height:1px;
+          background:var(--gold);width:0;z-index:5;box-shadow:0 0 6px rgba(183,155,123,.4)}
+/* ── RESERVATION */
+#reservation{height:80vh;position:relative;overflow:hidden;display:flex;align-items:center}
+#res-bg{position:absolute;inset:0;
+        background:url('assets/Reservation.jpg') center/cover no-repeat}
+#res-ov{position:absolute;inset:0;background:rgba(8,11,7,.76)}
+.res-in{position:relative;z-index:2;padding:0 8vw}
+.res-h{font-family:'Cinzel',serif;font-size:clamp(2.8rem,6.5vw,8rem);
+       line-height:.94;letter-spacing:3px;color:var(--text);margin-bottom:2rem}
+.res-times{font-size:.75rem;letter-spacing:5px;color:rgba(183,155,123,.65);margin-bottom:2.4rem}
+.res-row{display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
+.res-email{font-family:'Cinzel',serif;font-size:1.05rem;letter-spacing:2px;
+           color:var(--gold);position:relative;padding-bottom:3px}
+.res-email::after{content:'';position:absolute;bottom:0;left:0;
+                  width:0;height:1px;background:var(--gold);
+                  transition:width .42s var(--ease)}
+.res-email:hover::after{width:100%}
+.res-sep{color:var(--border)}
+.res-addr{font-size:.82rem;letter-spacing:2px;color:rgba(244,241,234,.42);font-weight:300}
+/* ── FOOTER */
+footer{background:var(--bg2);padding:5vh 8vw;border-top:1px solid var(--border)}
+.ft-in{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:2rem}
+.ft-logo img{width:96px;height:auto;opacity:.5;transition:opacity .3s}
+.ft-logo:hover img{opacity:.75}
+.ft-nav{display:flex;gap:2.4rem;flex-wrap:wrap}
+.ft-nav a{font-size:.68rem;letter-spacing:3px;font-weight:600;
+          text-transform:uppercase;color:rgba(244,241,234,.3);transition:color .3s}
+.ft-nav a:hover{color:var(--gold)}
+.ft-legal{text-align:right}
+.ft-legal span{display:block;font-size:.64rem;letter-spacing:2px;
+               color:rgba(244,241,234,.22);font-weight:300;line-height:2.1}
+.ft-credit a{color:rgba(183,155,123,.45);text-decoration:none;transition:color .3s}
+.ft-credit a:hover{color:var(--gold)}
+/* ── COOKIE CONSENT */
+#cb{position:fixed;bottom:0;left:0;right:0;z-index:9500;
+    background:rgba(6,9,6,.97);backdrop-filter:blur(32px);
+    border-top:1px solid var(--border);
+    visibility:hidden} /* transform handled entirely by GSAP via yPercent */
+#cb-bar{padding:1.3rem 6vw;display:flex;align-items:center;
+        justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.cb-txt strong{display:block;font-family:'Cinzel',serif;font-size:.78rem;
+               letter-spacing:2px;color:var(--text);margin-bottom:.3rem}
+.cb-txt p{font-size:.78rem;font-weight:300;color:rgba(244,241,234,.45);line-height:1.7}
+.cb-txt a{color:var(--gold);border-bottom:1px solid rgba(183,155,123,.3);
+          transition:border-color .3s}.cb-txt a:hover{border-color:var(--gold)}
+.cb-acts{display:flex;gap:.7rem;flex-wrap:wrap;flex-shrink:0;align-items:center}
+.cb-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:3px;
+        padding:.65rem 1.6rem;text-transform:uppercase;cursor:pointer!important;
+        transition:.35s var(--ease);border:none;display:inline-block}
+.cb-btn-o{background:none;border:1px solid rgba(183,155,123,.32);color:var(--gold)}
+.cb-btn-o:hover{background:rgba(183,155,123,.08);border-color:rgba(183,155,123,.6)}
+.cb-btn-f{background:var(--gold);color:var(--bg);font-weight:600}
+.cb-btn-f:hover{background:var(--gold2)}
+/* Settings panel */
+#cb-panel{border-top:1px solid rgba(183,155,123,.1);
+          padding:1.5rem 6vw 1.8rem;display:none}
+.cb-cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem;
+         margin-bottom:1.4rem}
+.cb-cat{background:rgba(255,255,255,.02);border:1px solid rgba(183,155,123,.1);
+        padding:1.1rem 1.3rem}
+.cb-cat-hd{display:flex;align-items:center;justify-content:space-between;
+           margin-bottom:.6rem;gap:.8rem}
+.cb-cat-n{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:2px;
+          color:var(--text);flex:1}
+.cb-always{font-size:.52rem;letter-spacing:3px;color:rgba(183,155,123,.45);
+           text-transform:uppercase;white-space:nowrap}
+.cb-cat-d{font-size:.74rem;font-weight:300;color:rgba(244,241,234,.38);line-height:1.7}
+/* Toggle */
+.cb-tog{position:relative;display:inline-block;width:40px;height:22px;
+        flex-shrink:0;cursor:pointer!important}
+.cb-tog input{position:absolute;opacity:0;width:0;height:0}
+.cb-track{position:absolute;inset:0;background:rgba(183,155,123,.15);
+          border-radius:22px;transition:.3s var(--ease);
+          border:1px solid rgba(183,155,123,.22)}
+.cb-knob{position:absolute;top:3px;left:3px;width:14px;height:14px;
+         background:rgba(244,241,234,.4);border-radius:50%;transition:.3s var(--ease)}
+.cb-tog input:checked+.cb-track{background:var(--gold);border-color:var(--gold)}
+.cb-tog input:checked~.cb-knob{transform:translateX(18px);background:var(--bg)}
+.cb-panel-btns{display:flex;gap:.7rem;flex-wrap:wrap}
+@media(max-width:640px){
+  #cb-bar{flex-direction:column;align-items:flex-start}
+  .cb-cats{grid-template-columns:1fr}
+}
+/* ── SAFARI / WEBKIT CROSS-BROWSER FIXES */
+#nav.s{-webkit-backdrop-filter:blur(24px)}
+#cb{-webkit-backdrop-filter:blur(32px)}
+#mm{-webkit-clip-path:inset(0 100% 0 0);-webkit-transition:-webkit-clip-path .75s var(--ease)}
+#mm.o{-webkit-clip-path:inset(0 0% 0 0)}
+
+/* ── TOUCH DEVICES — restore native cursor, hide custom cursor */
+@media(pointer:coarse){
+  *,*::before,*::after{cursor:auto!important}
+  #cur,#cur-r,#cur-lbl{display:none!important}
+}
+
+/* ── TABLET + MOBILE (≤900px) */
+@media(max-width:900px){
+  .nm,.nc{display:none}
+  .bur{display:flex}
+  /* hero */
+  .h-left{max-width:92vw;padding:0 6vw 14vh}
+  .h-right{display:none}
+  .scue{display:none}
+  #smoke-canvas{display:none}
+  /* statement */
+  .stmt-wrap{grid-template-columns:1fr;gap:1rem}
+  .stmt-deco{display:none}
+  /* menu teaser */
+  .mt-grid{grid-template-columns:1fr;gap:1.4rem}
+  .mt-card{height:62vw;min-height:220px}
+  /* numbers */
+  .nums-g{grid-template-columns:1fr 1fr;gap:0}
+  .num-sep{display:none}
+  .num-item{border-bottom:1px solid var(--border);padding:2rem 1.2rem}
+  .num-item:last-child{border-bottom:none}
+  /* gallery */
+  #gallery{height:auto}
+  #gallery::before{display:none}
+  .gal-hdr{position:relative;top:auto;left:auto;transform:none;
+           padding:7vh 6vw 2.5vh;background:none;pointer-events:auto;z-index:1}
+  .gal-tw{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+          scroll-snap-type:x mandatory;z-index:1}
+  .gal-track{padding:0 6vw 4vh;height:72vw;gap:4vw;will-change:auto}
+  .gal-card{width:76vw;scroll-snap-align:start}
+  .gal-prog{display:none}
+  /* reservation */
+  .res-h{font-size:clamp(2.4rem,9vw,4rem)}
+  /* footer */
+  .ft-in{flex-direction:column;align-items:flex-start;gap:1.6rem}
+  .ft-legal{text-align:left}
+  .ft-nav{gap:1.4rem}
+  /* cookie bar */
+  #cb-inner{flex-direction:column;gap:1.2rem;align-items:flex-start}
+  .cb-btns{width:100%;display:flex;flex-direction:column;gap:.7rem}
+  .cb-btns button{width:100%;text-align:center}
+}
+
+/* ── SMALL TABLET (≤768px) */
+@media(max-width:768px){
+  #nav{padding:1.4rem 5vw}
+  #nav.s{padding:1rem 5vw}
+  .nl img{width:110px}
+  #statement{padding:10vh 6vw}
+  #menu-teaser{padding:10vh 6vw 8vh}
+  .mt-card{height:58vw}
+  .nums-g{grid-template-columns:1fr}
+  #reservation{height:70vh}
+}
+
+/* ── MOBILE (≤540px) */
+@media(max-width:540px){
+  #nav{padding:1.2rem 5vw}
+  .nl img{width:96px}
+  /* hero */
+  .h-title{font-size:clamp(2.8rem,13vw,4.2rem)}
+  .h-sub{font-size:.62rem;letter-spacing:3px}
+  /* age gate */
+  .ag-logo{width:220px;margin-bottom:2.5rem}
+  .ag-btns{flex-direction:column;gap:1rem;width:100%;max-width:280px}
+  .ag-btn{width:100%;text-align:center}
+  /* statement */
+  .stmt-big{font-size:clamp(1.7rem,7.5vw,2.4rem)}
+  .stmt-body{font-size:.92rem}
+  /* menu teaser */
+  .mt-card{height:72vw}
+  .mt-title{font-size:1.2rem}
+  /* gallery card */
+  .gal-card{width:84vw}
+  .gal-track{height:80vw}
+  /* reservation */
+  .res-h{font-size:clamp(2rem,10vw,3rem)}
+  .res-row{flex-direction:column;gap:1rem;align-items:flex-start}
+  .res-sep{display:none}
+  /* footer */
+  .ft-nav{flex-direction:column;gap:1rem}
+  footer{padding-bottom:max(1.5rem,env(safe-area-inset-bottom))}
+}
+
+/* ── VERY SMALL (≤380px) */
+@media(max-width:380px){
+  .h-title{font-size:clamp(2.4rem,12vw,3.2rem)}
+  .ag-q{font-size:1.2rem}
+  .stmt-big{font-size:1.6rem}
+  .mt-card{height:82vw}
+}
+
+/* ── LANDSCAPE MOBILE */
+@media(max-height:500px) and (orientation:landscape){
+  #hero{height:100svh}
+  .h-left{padding:0 6vw 6vh}
+  .ag-logo{width:140px;margin-bottom:1.5rem}
+  .ag-q{font-size:1.1rem;margin-bottom:1.5rem}
+  #ag{padding:1rem 2rem}
+}
+</style>
+</head>
+<body>
+<div id="pw"></div>
+<div id="prog"></div>
+<div id="cur"></div>
+<div id="cur-r"></div>
+<div id="cur-lbl"></div>
+
+<div id="preloader" role="status" aria-label="Načítava sa">
+  <img src="HUMO_logo.svg" class="pl-logo" alt="HUMO Cigar Lounge" width="200" height="150">
+  <div class="pl-bar"><div class="pl-fill" id="pl-fill"></div></div>
+  <div class="pl-pct" id="pl-pct">0%</div>
+</div>
+
+<div id="ag" role="dialog" aria-modal="true" aria-labelledby="ag-q">
+  <img src="HUMO_logo.svg" class="ag-logo" alt="HUMO Cigar Lounge Bratislava" width="260" height="195">
+  <p class="ag-kicker">Upozornenie na vek</p>
+  <p class="ag-q" id="ag-q">Máte 18 alebo viac rokov?</p>
+  <div class="ag-btns">
+    <button class="ag-btn" id="ag-yes">Áno, mám 18+</button>
+    <button class="ag-btn" id="ag-no">Nie</button>
+  </div>
+  <p class="ag-note">Vstupom potvrdzujete, že ste plnoletí a právne predpisy vašej krajiny umožňujú konzumáciu alkoholu a tabakových výrobkov.</p>
+</div>
+<script>/* Synchronous age check — runs before GSAP, no flash */
+(function(){if(localStorage.getItem('ag_humo')){var a=document.getElementById('ag');if(a)a.style.display='none';}})();
+</script>
+
+<nav id="nav" aria-label="Hlavná navigácia">
+  <a href="index.html" class="nl" aria-label="HUMO domov">
+    <img src="HUMO_logo.svg" alt="HUMO Cigar Lounge" width="132" height="99">
+  </a>
+  <ul class="nm" role="list">
+    <li><a href="#statement">Filozofia</a></li>
+    <li><a href="menu.html" data-transition>Menu</a></li>
+    <li><a href="#gallery">Kolekcia</a></li>
+    <li><a href="#reservation">Kontakt</a></li>
+  </ul>
+  <a href="mailto:info@humo.sk" class="nc magnetic">Rezervácia</a>
+  <button class="bur" id="bur" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div id="mm" aria-hidden="true">
+  <ul class="mm-list" role="list">
+    <li><a href="#statement">Filozofia</a></li>
+    <li><a href="menu.html" data-transition>Menu</a></li>
+    <li><a href="#gallery">Kolekcia</a></li>
+    <li><a href="#reservation">Kontakt</a></li>
+  </ul>
+</div>
+
+<h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap">HUMO Cigar Lounge Bratislava — Prémiové Kubánske Cigary, Whisky a Rum | Gorkého 5, Staré Mesto</h1>
+
+<section id="hero" aria-label="HUMO hero">
+  <div id="h-bg"></div>
+  <div id="h-ov"></div>
+  <canvas id="smoke-canvas" aria-hidden="true"></canvas>
+  <div class="h-left">
+    <p class="h-label rlw"><span class="rl">GORKÉHO&nbsp;5 · BRATISLAVA · STARÉ&nbsp;MESTO</span></p>
+    <h2 class="h-title" aria-label="Rituál Dymu — Cigar Lounge Bratislava">
+      <span class="rlw"><span class="rl">RITUÁL</span></span>
+      <span class="rlw"><span class="rl">DYMU</span></span>
+    </h2>
+    <div class="h-rule"></div>
+    <p class="h-desc rlw">
+      <span class="rl">Prémiové cigary a vzácne spirits v historickom centre Starého Mesta. Vstúpte do sveta pomalého vychutnávania.</span>
+    </p>
+    <div class="h-status">
+      <span class="s-dot" id="sdot"></span>
+      <span class="s-txt" id="stxt">OTVORENÉ</span>
+      <span class="s-hrs">UT — NE · 17:00 – 01:00</span>
+    </div>
+  </div>
+  <div class="h-right">
+    <p>EST. 2019</p>
+    <p>BRATISLAVA</p>
+  </div>
+  <div class="scue" aria-hidden="true">
+    <span class="scue-t">SCROLL</span>
+    <div class="scue-l" id="scue-l"></div>
+  </div>
+</section>
+
+<div class="mq" aria-hidden="true">
+  <div class="mq-track">
+    <span>CIGARY</span><span class="mq-sep">✦</span>
+    <span>WHISKY</span><span class="mq-sep">✦</span>
+    <span>RUM</span><span class="mq-sep">✦</span>
+    <span>BRATISLAVA</span><span class="mq-sep">✦</span>
+    <span>PRÉMIOVÉ SPIRITS</span><span class="mq-sep">✦</span>
+    <span>PRIVATE LOUNGE</span><span class="mq-sep">✦</span>
+    <span>GORKÉHO 5</span><span class="mq-sep">✦</span>
+    <span>KUBÁNSKE CIGARY</span><span class="mq-sep">✦</span>
+    <span>CIGARY</span><span class="mq-sep">✦</span>
+    <span>WHISKY</span><span class="mq-sep">✦</span>
+    <span>RUM</span><span class="mq-sep">✦</span>
+    <span>BRATISLAVA</span><span class="mq-sep">✦</span>
+    <span>PRÉMIOVÉ SPIRITS</span><span class="mq-sep">✦</span>
+    <span>PRIVATE LOUNGE</span><span class="mq-sep">✦</span>
+    <span>GORKÉHO 5</span><span class="mq-sep">✦</span>
+    <span>KUBÁNSKE CIGARY</span><span class="mq-sep">✦</span>
+  </div>
+</div>
+
+<section id="statement" aria-labelledby="stmt-h">
+  <div class="stmt-deco" aria-hidden="true">HUMO</div>
+  <div class="stmt-wrap">
+    <span class="sec-n">01</span>
+    <div>
+      <p id="stmt-h" class="stmt-big">Umenie pomalého vychutnávania v srdci Bratislavy.</p>
+      <p class="stmt-body">HUMO vznikol z presvedčenia, že skutočný luxus nie je o okázalosti — je o chvíľach ticha, dobrého výberu a nezabudnuteľnej spoločnosti. Nachádzame sa v historických priestoroch Gorkého 5, kde každý detail slúži vášni k prémiovým cigárach a výnimočným spirits.</p>
+      <a href="menu.html" class="lk magnetic" data-transition>Naše menu <span class="lk-a">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="menu-teaser" aria-labelledby="mt-h">
+  <div class="mt-header">
+    <span class="sec-n">02</span>
+    <h2 id="mt-h">Ponuka</h2>
+  </div>
+  <div class="mt-grid">
+    <a href="menu.html#cigary" class="mt-card tilt-card" data-cursor="PRESKÚMAŤ" data-transition
+       aria-label="Cigary — pozrieť menu">
+      <div class="mt-ci">
+        <img src="assets/kubanske_cigary.jpg" alt="Prémiové kubánske cigary HUMO Cigar Lounge Bratislava"
+             loading="lazy" width="600" height="800">
+      </div>
+      <div class="mt-ov"></div>
+      <div class="mt-cd">
+        <span class="mt-cat">01 / Tabak</span>
+        <span class="mt-title">Cigary</span>
+        <p class="mt-desc">Kubánske aj non-havana selekcie. Cohiba, Montecristo, Padron a desiatky ďalších.</p>
+        <span class="mt-cta">Preskúmať <span>→</span></span>
+      </div>
+    </a>
+    <a href="menu.html#spirits" class="mt-card tilt-card" data-cursor="PRESKÚMAŤ" data-transition
+       aria-label="Whisky a Spirits — pozrieť menu">
+      <div class="mt-ci">
+        <img src="assets/whisky_spirits.jpg" alt="Whisky rum spirits HUMO bar Bratislava"
+             loading="lazy" width="600" height="800">
+      </div>
+      <div class="mt-ov"></div>
+      <div class="mt-cd">
+        <span class="mt-cat">02 / Spirits</span>
+        <span class="mt-title">Whisky &amp; Rum</span>
+        <p class="mt-desc">Viac ako 120 etikiet. Škótske, japonské, bourbony. Vintage romy a koňaky.</p>
+        <span class="mt-cta">Preskúmať <span>→</span></span>
+      </div>
+    </a>
+    <a href="menu.html#koktaily" class="mt-card tilt-card" data-cursor="PRESKÚMAŤ" data-transition
+       aria-label="Koktaily — pozrieť menu">
+      <div class="mt-ci">
+        <img src="assets/Reservation.jpg" alt="Koktaily bar HUMO Cigar Lounge Bratislava"
+             loading="lazy" width="600" height="800">
+      </div>
+      <div class="mt-ov"></div>
+      <div class="mt-cd">
+        <span class="mt-cat">03 / Koktaily</span>
+        <span class="mt-title">Koktaily</span>
+        <p class="mt-desc">Klasické a originálne recepty. Old Fashioned, Negroni, Sidecar a sezónne špeciality.</p>
+        <span class="mt-cta">Preskúmať <span>→</span></span>
+      </div>
+    </a>
+  </div>
+  <div class="mt-foot">
+    <a href="menu.html" class="btn-gold magnetic" data-transition>Zobraziť celé menu</a>
+  </div>
+</section>
+
+<section id="numbers" aria-label="HUMO v číslach">
+  <div class="nums-g">
+    <div class="num-item">
+      <div class="num-big"><span class="cnt" data-target="70">0</span><span>+</span></div>
+      <div class="num-lab">Cigáry</div>
+      <div class="num-desc">Kubánske aj non-havana selekcie z celého sveta</div>
+    </div>
+    <div class="num-sep" aria-hidden="true"></div>
+    <div class="num-item">
+      <div class="num-big"><span class="cnt" data-target="120">0</span><span>+</span></div>
+      <div class="num-lab">Spirits</div>
+      <div class="num-desc">Whisky, rum, koňak, mezcal a vzácne likéry</div>
+    </div>
+    <div class="num-sep" aria-hidden="true"></div>
+    <div class="num-item">
+      <div class="num-big">EST.</div>
+      <div class="num-lab">2019</div>
+      <div class="num-desc">Gorkého 5, Bratislava, Staré Mesto</div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" aria-labelledby="gal-h">
+  <div class="gal-hdr">
+    <span class="sec-n">03</span>
+    <h2 id="gal-h" class="gal-htitle">Naša<br>kolekcia</h2>
+  </div>
+  <div class="gal-prog" id="gal-prog"></div>
+  <div class="gal-tw">
+    <div class="gal-track" id="gal-track">
+      <div class="gal-card" data-cursor="EXPLORE">
+        <div class="gal-ci">
+          <img src="assets/kubanske_cigary.jpg" alt="Kubánske cigary Cohiba Montecristo HUMO Bratislava"
+               loading="lazy" width="480" height="680">
+        </div>
+        <div class="gal-cd">
+          <span class="gal-ix">01</span>
+          <h3>Kubánske cigary</h3>
+          <p>Cohiba, Montecristo, Romeo y Julieta — certifikovaný priamy dovoz z Havany.</p>
+        </div>
+      </div>
+      <div class="gal-card" data-cursor="EXPLORE">
+        <div class="gal-ci">
+          <img src="assets/non_havana.jpg" alt="Non-havana cigary Nicaragua Honduras HUMO Bratislava"
+               loading="lazy" width="480" height="680">
+        </div>
+        <div class="gal-cd">
+          <span class="gal-ix">02</span>
+          <h3>Non-Havana</h3>
+          <p>Nicaragua, Honduras, Dominikánska republika — vzrušujúce objavy pre znalcov.</p>
+        </div>
+      </div>
+      <div class="gal-card" data-cursor="EXPLORE">
+        <div class="gal-ci">
+          <img src="assets/whisky_spirits.jpg" alt="Whisky rum spirits HUMO Gorkého 5 Bratislava"
+               loading="lazy" width="480" height="680">
+        </div>
+        <div class="gal-cd">
+          <span class="gal-ix">03</span>
+          <h3>Whisky &amp; Spirits</h3>
+          <p>Škótske single malt, japonské, bourbony, starožitný rum — 120+ etikiet.</p>
+        </div>
+      </div>
+      <div class="gal-card gal-card--dark" data-cursor="RESERVE">
+        <div class="gal-ci">
+          <img src="assets/membership.jpg" alt="HUMO Membership exkluzívny klub Bratislava"
+               loading="lazy" width="480" height="680">
+        </div>
+        <div class="gal-deco-n" aria-hidden="true">IV</div>
+        <div class="gal-cd">
+          <span class="gal-ix">04</span>
+          <h3>Membership</h3>
+          <p>Privátny humidor, rezervovaný stôl, exkluzívne degustácie pre skutočných znalcov.</p>
+          <a href="mailto:info@humo.sk" class="lk">Zistiť viac <span class="lk-a">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reservation" aria-labelledby="res-h">
+  <div id="res-bg"></div>
+  <div id="res-ov"></div>
+  <div class="res-in">
+    <span class="sec-n">04</span>
+    <h2 id="res-h" class="res-h">
+      <span class="rlw"><span class="rl">Príďte</span></span>
+      <span class="rlw"><span class="rl">na pohár.</span></span>
+    </h2>
+    <p class="res-times">Utorok — Nedeľa &nbsp;·&nbsp; 17:00 – 01:00</p>
+    <div class="res-row">
+      <a href="mailto:info@humo.sk" class="res-email">info@humo.sk</a>
+      <span class="res-sep" aria-hidden="true">|</span>
+      <span class="res-addr">Gorkého 5, 811 01 Bratislava</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-in">
+    <a href="index.html" class="ft-logo" aria-label="HUMO domov">
+      <img src="HUMO_logo.svg" alt="HUMO" width="96" height="72">
+    </a>
+    <nav class="ft-nav" aria-label="Päticová navigácia">
+      <a href="gdpr.html" data-transition>Ochrana osobných údajov</a>
+      <a href="cookies.html" data-transition>Zásady cookies</a>
+      <a href="#" id="ft-cookie-settings" onclick="localStorage.removeItem('ck_humo');window.cbShow&&window.cbShow();return false;">Nastavenia cookies</a>
+    </nav>
+    <div class="ft-legal">
+      <span>© 2025 EUPHORY K&amp;I, s. r. o.</span>
+      <span>Gorkého 5 · 811 01 Bratislava</span>
+      <span class="ft-credit">Vytvorilo: <a href="https://alysum.sk" target="_blank" rel="noopener">Alysum cs</a></span>
+    </div>
+  </div>
+</footer>
+
+<div id="cb" role="dialog" aria-label="Správa cookies">
+  <!-- Settings panel (toggles) -->
+  <div id="cb-panel">
+    <div class="cb-cats">
+      <div class="cb-cat">
+        <div class="cb-cat-hd">
+          <span class="cb-cat-n">Nevyhnutné</span>
+          <span class="cb-always">Vždy aktívne</span>
+        </div>
+        <p class="cb-cat-d">Zabezpečujú základné funkcie webu — prihlásenie, vek-gate, pamäť súhlasu. Nedajú sa vypnúť.</p>
+      </div>
+      <div class="cb-cat">
+        <div class="cb-cat-hd">
+          <span class="cb-cat-n">Analytické</span>
+          <label class="cb-tog" title="Analytické cookies">
+            <input type="checkbox" id="cb-analytics">
+            <span class="cb-track"></span>
+            <span class="cb-knob"></span>
+          </label>
+        </div>
+        <p class="cb-cat-d">Pomáhajú nám pochopiť, ako návštevníci používajú web (napr. počty návštev, zdroje). Žiadne osobné údaje.</p>
+      </div>
+      <div class="cb-cat">
+        <div class="cb-cat-hd">
+          <span class="cb-cat-n">Marketingové</span>
+          <label class="cb-tog" title="Marketingové cookies">
+            <input type="checkbox" id="cb-marketing">
+            <span class="cb-track"></span>
+            <span class="cb-knob"></span>
+          </label>
+        </div>
+        <p class="cb-cat-d">Umožňujú personalizáciu obsahu a meranie účinnosti reklám. Momentálne nepoužívame žiadne reklamné siete.</p>
+      </div>
+    </div>
+    <div class="cb-panel-btns">
+      <button id="cb-save" class="cb-btn cb-btn-f">Uložiť nastavenia</button>
+      <button id="cb-acc-all-p" class="cb-btn cb-btn-o">Prijať všetky</button>
+    </div>
+  </div>
+  <!-- Main bar -->
+  <div id="cb-bar">
+    <div class="cb-txt">
+      <strong>Cookies &amp; Súkromie</strong>
+      <p>Používame cookies na zabezpečenie funkčnosti webu. Voliteľné cookies (analytické, marketingové) aktivujeme len s vaším súhlasom. <a href="gdpr.html">Zásady ochrany údajov</a></p>
+    </div>
+    <div class="cb-acts">
+      <button id="cb-settings" class="cb-btn cb-btn-o">⚙ Nastavenia</button>
+      <button id="cb-reject" class="cb-btn cb-btn-o">Odmietnuť</button>
+      <button id="cb-acc" class="cb-btn cb-btn-f">Prijať všetky</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+gsap.registerPlugin(ScrollTrigger);
+function qs(s,c){return(c||document).querySelector(s)}
+function qsa(s,c){return[].slice.call((c||document).querySelectorAll(s))}
+
+/* LIVE STATUS */
+function updStatus(){
+  var h=new Date().getHours(),open=h>=17||h<1;
+  var d=qs('#sdot'),t=qs('#stxt');
+  if(d){d.className='s-dot'+(open?'':' closed')}
+  if(t){t.textContent=open?'OTVORENÉ':'ZATVORENÉ'}
+}
+updStatus();setInterval(updStatus,30000);
+
+/* ── SMOKE — blur+small-particle technique: organic wisps, not circles */
+(function(){
+  var sc=qs('#smoke-canvas');
+  if(!sc) return;
+  var ctx=sc.getContext('2d');
+  var W,H,pts=[];
+  var mx=-9999,my=-9999,mvx=0,mvy=0;
+  var frame=0,active=true;
+
+  function resize(){W=sc.width=sc.offsetWidth;H=sc.height=sc.offsetHeight;}
+
+  /* Each particle is intentionally small (15-50px). The CSS blur(18px) on the
+     canvas makes overlapping particles merge into wispy, organic smoke shapes. */
+  function Particle(seeded){
+    /* Spawn in a band across the bottom ~40% of canvas width, centred */
+    var band=W*0.38;
+    this.x=W*0.5+(Math.random()-.5)*2*band;
+    this.y=seeded?(H*(0.05+Math.random()*0.98)):(H+Math.random()*20);
+    /* Half speed — slow, meditative rise */
+    this.bvx=(Math.random()-.5)*0.16;
+    this.bvy=-(Math.random()*0.19+0.06);
+    this.vx=this.bvx; this.vy=this.bvy;
+    /* Small radius — blur does the work of making it organic */
+    this.r=Math.random()*32+14;           /* 14–46 px */
+    this.maxR=this.r+Math.random()*55+25; /* grows to 39–126 px */
+    /* Higher alpha because blur spreads and dilutes intensity */
+    this.peak=Math.random()*0.28+0.18;    /* 0.18–0.46 — visible but soft */
+    this.maxLife=Math.floor(Math.random()*340+180);
+    this.life=seeded?Math.floor(Math.random()*this.maxLife):0;
+    this.alpha=seeded?this.peak*0.6*Math.random():0;
+    /* Per-particle noise offsets for organic path */
+    this.nx=Math.random()*6.28;
+    this.nf=Math.random()*0.0025+0.001; /* slower wobble */
+    this.col=Math.floor(Math.random()*3); /* colour variant */
+  }
+
+  /* Colour palette: warm white, neutral grey, cool grey */
+  var palettes=[
+    [248,243,235], /* warm white */
+    [228,222,215], /* neutral grey */
+    [210,205,200]  /* cool grey   */
+  ];
+
+  Particle.prototype.tick=function(){
+    this.life++;
+    /* Sinusoidal lateral wobble */
+    this.nx+=this.nf;
+    this.vx+=Math.sin(this.nx*2.3)*0.06+Math.cos(this.nx*0.9)*0.03;
+    /* Spring back to base */
+    this.vx+=(this.bvx-this.vx)*0.028;
+    this.vy+=(this.bvy-this.vy)*0.018;
+    /* Mouse repulsion — canvas Y offset relative to hero bottom */
+    var heroEl=document.getElementById('hero');
+    var offY=heroEl?(heroEl.offsetHeight-H):0;
+    var cy=my-offY;
+    var dx=this.x-mx, dy=this.y-cy;
+    var d=Math.sqrt(dx*dx+dy*dy);
+    if(d<320&&d>1){
+      var spd=Math.sqrt(mvx*mvx+mvy*mvy);
+      var f=(1-d/320)*(3.2+spd*0.08);
+      this.vx+=(dx/d)*f*0.09;
+      this.vy+=(dy/d)*f*0.06;
+    }
+    this.x+=this.vx;
+    this.y+=this.vy;
+    this.r+=(this.maxR-this.r)*0.007;
+    /* Fade in 0-12%, hold 12-68%, fade out 68-100% */
+    var p=this.life/this.maxLife;
+    if(p<0.12)      this.alpha=p/0.12*this.peak;
+    else if(p>0.68) this.alpha=(1-p)/0.32*this.peak;
+    else            this.alpha=this.peak;
+    return this.life<this.maxLife&&this.y>-this.r*2.5;
+  };
+
+  Particle.prototype.draw=function(){
+    var c=palettes[this.col];
+    ctx.save();
+    ctx.globalAlpha=this.alpha;
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle='rgb('+c[0]+','+c[1]+','+c[2]+')';
+    ctx.fill();
+    ctx.restore();
+  };
+
+  /* Mouse tracking */
+  var hero=qs('#hero');
+  var pmx=0,pmy=0;
+  hero.addEventListener('mousemove',function(e){
+    var r=hero.getBoundingClientRect();
+    var nx=e.clientX-r.left,ny=e.clientY-r.top;
+    mvx=nx-pmx; mvy=ny-pmy;
+    pmx=mx=nx; pmy=my=ny;
+  });
+  hero.addEventListener('mouseleave',function(){mx=-9999;my=-9999;mvx=0;mvy=0;});
+
+  resize();
+
+  /* Pre-seed 60 particles scattered at life proportional to canvas height */
+  for(var i=0;i<60;i++) pts.push(new Particle(true));
+
+  function loop(){
+    if(!active) return;
+    frame++;
+    ctx.clearRect(0,0,W,H);
+    /* Spawn 2 new particles every 5 frames */
+    if(frame%5===0&&pts.length<160){
+      pts.push(new Particle(false));
+      pts.push(new Particle(false));
+    }
+    pts=pts.filter(function(p){return p.tick();});
+    for(var i=0;i<pts.length;i++) pts[i].draw();
+    mvx*=0.80; mvy*=0.80;
+    requestAnimationFrame(loop);
+  }
+  loop();
+  window.addEventListener('resize',resize);
+
+  ScrollTrigger.create({
+    trigger:'#hero',start:'top bottom',end:'bottom top',
+    onToggle:function(s){active=s.isActive;if(active)loop();}
+  });
+})();
+
+/* CURSOR */
+var cur=qs('#cur'),curR=qs('#cur-r'),curL=qs('#cur-lbl');
+document.addEventListener('mousemove',function(e){
+  gsap.to(cur,{x:e.clientX,y:e.clientY,duration:.06,overwrite:true});
+  gsap.to(curR,{x:e.clientX,y:e.clientY,duration:.42,ease:'power3.out',overwrite:true});
+  if(curL) gsap.set(curL,{x:e.clientX,y:e.clientY});
+});
+qsa('[data-cursor]').forEach(function(el){
+  el.addEventListener('mouseenter',function(){
+    if(curL){curL.textContent=el.dataset.cursor;curL.style.opacity='1'}
+    curR.classList.add('hv');
+  });
+  el.addEventListener('mouseleave',function(){
+    if(curL) curL.style.opacity='0';
+    curR.classList.remove('hv');
+  });
+});
+qsa('a,button,.mt-card,.gal-card').forEach(function(el){
+  el.addEventListener('mouseenter',function(){if(!el.dataset.cursor)curR.classList.add('h')});
+  el.addEventListener('mouseleave',function(){curR.classList.remove('h');curR.classList.remove('hv')});
+});
+
+/* PROGRESS */
+ScrollTrigger.create({
+  start:'top top',end:'bottom bottom',
+  onUpdate:function(s){gsap.to('#prog',{width:(s.progress*100)+'%',duration:.1})}
+});
+
+/* NAV */
+window.addEventListener('scroll',function(){
+  qs('#nav').classList.toggle('s',window.scrollY>55);
+},{passive:true});
+
+/* BURGER */
+var bur=qs('#bur'),mm=qs('#mm'),mmO=false;
+bur.addEventListener('click',function(){
+  mmO=!mmO;mm.classList.toggle('o',mmO);
+  bur.setAttribute('aria-expanded',mmO);
+  var sp=bur.querySelectorAll('span');
+  sp[0].style.transform=mmO?'rotate(45deg) translate(4px,4px)':'';
+  sp[1].style.opacity=mmO?0:1;
+  sp[2].style.transform=mmO?'rotate(-45deg) translate(4px,-4px)':'';
+});
+qsa('#mm a').forEach(function(a){
+  a.addEventListener('click',function(){
+    mmO=false;mm.classList.remove('o');
+    bur.setAttribute('aria-expanded','false');
+    bur.querySelectorAll('span').forEach(function(s){s.style.transform='';s.style.opacity='';});
+  });
+});
+
+/* PAGE WIPE TRANSITION */
+var pw=qs('#pw');
+gsap.to(pw,{scaleX:0,transformOrigin:'right center',duration:.7,ease:'power4.out',delay:.12});
+qsa('[data-transition]').forEach(function(el){
+  el.addEventListener('click',function(e){
+    var h=el.getAttribute('href');
+    if(!h||h==='#') return;
+    e.preventDefault();
+    gsap.to(pw,{scaleX:1,transformOrigin:'left center',duration:.55,ease:'power4.in',
+      onComplete:function(){window.location.href=h}
+    });
+  });
+});
+
+/* MAGNETIC BUTTONS */
+qsa('.magnetic').forEach(function(el){
+  el.addEventListener('mousemove',function(e){
+    var r=el.getBoundingClientRect();
+    gsap.to(el,{x:(e.clientX-r.left-r.width/2)*.32,
+                y:(e.clientY-r.top-r.height/2)*.32,
+                duration:.45,ease:'power2.out'});
+  });
+  el.addEventListener('mouseleave',function(){
+    gsap.to(el,{x:0,y:0,duration:.75,ease:'elastic.out(1,.3)'});
+  });
+});
+
+/* 3D CARD TILT */
+qsa('.tilt-card').forEach(function(c){
+  c.style.transformStyle='preserve-3d';
+  c.addEventListener('mousemove',function(e){
+    var r=c.getBoundingClientRect();
+    var x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    gsap.to(c,{rotateX:-y*7,rotateY:x*7,z:10,
+               duration:.4,ease:'power2.out',transformPerspective:1000});
+  });
+  c.addEventListener('mouseleave',function(){
+    gsap.to(c,{rotateX:0,rotateY:0,z:0,duration:.75,ease:'elastic.out(1,.28)'});
+  });
+});
+
+/* PRELOADER */
+var plF=qs('#pl-fill'),plP=qs('#pl-pct');
+var plTl=gsap.timeline();
+plTl.to(plF,{width:'100%',duration:2.0,ease:'power1.inOut',
+  onUpdate:function(){
+    var p=Math.round(parseFloat(plF.style.width||'0'));
+    if(plP) plP.textContent=p+'%';
+  }
+});
+plTl.to('#preloader',{yPercent:-105,duration:1.0,ease:'power4.inOut',delay:.15});
+plTl.set('#preloader',{display:'none'});
+plTl.add(function(){
+  /* Skip age gate if user already confirmed 18+ */
+  if(localStorage.getItem('ag_humo')){
+    var ag=qs('#ag');
+    if(ag){ag.style.display='none';}
+    heroIn();
+  }
+});
+
+/* AGE GATE */
+function enter(){
+  localStorage.setItem('ag_humo','1');
+  gsap.to('#ag',{yPercent:-106,duration:.95,ease:'power4.inOut',
+    onComplete:function(){qs('#ag').style.display='none';heroIn();}
+  });
+}
+qs('#ag-yes').addEventListener('click',enter);
+qs('#ag-no').addEventListener('click',function(){window.location.href='https://www.google.com'});
+
+/* HERO ENTRANCE */
+function heroIn(){
+  var tl=gsap.timeline({defaults:{ease:'power3.out'}});
+  tl.from('#h-bg',{scale:1.07,duration:2.4,ease:'power2.out'},0);
+  tl.from('.h-label .rl',{y:'112%',duration:.85},0.3);
+  tl.from('.h-title .rl',{y:'112%',duration:1.0,stagger:.14},0.5);
+  tl.from('.h-rule',{scaleX:0,transformOrigin:'left center',duration:.9,ease:'power2.inOut'},0.92);
+  tl.from('.h-desc .rl',{y:'112%',duration:.85},1.06);
+  tl.from('.h-status',{opacity:0,y:8,duration:.7},1.22);
+  tl.from('.h-right',{opacity:0,y:8,duration:.6},1.28);
+  tl.from('.scue',{opacity:0,duration:.55},1.4);
+  gsap.to('#scue-l',{scaleY:.2,transformOrigin:'top center',
+                     duration:1.2,yoyo:true,repeat:-1,ease:'power1.inOut'});
+  setTimeout(function(){
+    if(!localStorage.getItem('ck_humo') && window.cbShow) window.cbShow();
+  },3000);
+}
+
+/* SCROLL ANIMATIONS */
+qsa('#reservation .rl').forEach(function(el){
+  gsap.from(el,{y:'108%',duration:1.0,ease:'power3.out',
+    scrollTrigger:{trigger:el.closest('.rlw'),start:'top 84%',once:true}
+  });
+});
+
+/* Statement: word-by-word */
+(function(){
+  var el=qs('.stmt-big');if(!el) return;
+  var words=el.textContent.trim().split(/\s+/);
+  el.innerHTML=words.map(function(w){
+    return '<span class="ww"><span class="wi">'+w+'</span></span>';
+  }).join(' ');
+  gsap.from('.stmt-big .wi',{
+    y:'112%',duration:.65,stagger:.055,ease:'power3.out',
+    scrollTrigger:{trigger:'.stmt-big',start:'top 78%',once:true}
+  });
+})();
+
+gsap.from('.stmt-body',{
+  opacity:0,y:22,duration:.9,ease:'power3.out',
+  scrollTrigger:{trigger:'.stmt-body',start:'top 80%',once:true}
+});
+gsap.from('#statement .lk',{
+  opacity:0,y:14,duration:.8,
+  scrollTrigger:{trigger:'#statement .lk',start:'top 82%',once:true}
+});
+gsap.from('.mt-header',{
+  opacity:0,y:18,duration:.8,
+  scrollTrigger:{trigger:'.mt-header',start:'top 80%',once:true}
+});
+gsap.from('.mt-card',{
+  opacity:0,y:40,duration:.9,stagger:.14,ease:'power3.out',
+  scrollTrigger:{trigger:'.mt-grid',start:'top 74%',once:true}
+});
+gsap.from('.mt-foot',{
+  opacity:0,y:16,duration:.7,
+  scrollTrigger:{trigger:'.mt-foot',start:'top 84%',once:true}
+});
+gsap.from('.num-item',{
+  opacity:0,y:28,duration:.85,stagger:.18,ease:'power3.out',
+  scrollTrigger:{trigger:'#numbers',start:'top 72%',once:true}
+});
+qsa('.cnt').forEach(function(el){
+  var target=parseInt(el.dataset.target);
+  ScrollTrigger.create({
+    trigger:el,start:'top 82%',once:true,
+    onEnter:function(){
+      var o={n:0};
+      gsap.to(o,{n:target,duration:1.8,ease:'power2.out',
+        onUpdate:function(){el.textContent=Math.round(o.n)}
+      });
+    }
+  });
+});
+gsap.from('.gal-hdr',{
+  opacity:0,x:-24,duration:.9,ease:'power3.out',
+  scrollTrigger:{trigger:'#gallery',start:'top 80%',once:true}
+});
+gsap.to('#res-bg',{
+  yPercent:22,ease:'none',
+  scrollTrigger:{trigger:'#reservation',start:'top bottom',end:'bottom top',scrub:1.2}
+});
+gsap.from('.res-times,.res-row',{
+  opacity:0,y:16,duration:.8,stagger:.12,ease:'power3.out',
+  scrollTrigger:{trigger:'.res-times',start:'top 82%',once:true}
+});
+gsap.from('.ft-in',{opacity:0,y:16,duration:.8,
+  scrollTrigger:{trigger:'footer',start:'top 88%',once:true}
+});
+
+/* HORIZONTAL GALLERY */
+var GT=qs('#gal-track'),GP=qs('#gal-prog');
+function buildG(){
+  ScrollTrigger.getAll().forEach(function(st){
+    if(st.vars.trigger===qs('#gallery')) st.kill();
+  });
+  if(window.innerWidth<=900) return;
+  gsap.set(GT,{x:0});
+  var dist=GT.scrollWidth-window.innerWidth;
+  if(dist<=0) return;
+  ScrollTrigger.create({
+    trigger:'#gallery',start:'top top',
+    end:function(){return '+='+dist},
+    pin:true,scrub:1,anticipatePin:1,invalidateOnRefresh:true,
+    onUpdate:function(s){
+      gsap.set(GT,{x:-dist*s.progress});
+      if(GP) GP.style.width=(s.progress*100)+'%';
+    }
+  });
+}
+buildG();
+window.addEventListener('resize',gsap.debounce(buildG,350));
+
+/* ANCHOR SCROLL */
+qsa('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var id=this.getAttribute('href');if(id==='#') return;
+    var t=document.querySelector(id);if(!t) return;
+    e.preventDefault();
+    window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY,behavior:'smooth'});
+  });
+});
+
+})();
+</script>
+
+<!-- ── COOKIE CONSENT — standalone script, isolated from main IIFE -->
+<script>
+(function(){
+  var cb=document.getElementById('cb');
+  var cbPanel=document.getElementById('cb-panel');
+  if(!cb) return;
+  var panelOpen=false;
+
+  function cbShow(){
+    gsap.set(cb,{yPercent:100,visibility:'visible'});
+    gsap.to(cb,{yPercent:0,duration:.9,ease:'power4.out'});
+  }
+  function cbHide(){
+    gsap.to(cb,{yPercent:100,duration:.55,ease:'power3.in',
+      onComplete:function(){gsap.set(cb,{visibility:'hidden'});}
+    });
+  }
+  function cbSave(a,m){
+    localStorage.setItem('ck_humo',JSON.stringify({v:1,n:true,a:!!a,m:!!m}));
+  }
+
+  /* Expose globally for footer link and heroIn() */
+  window.cbShow=cbShow;
+  window.cbHide=cbHide;
+
+  document.getElementById('cb-acc').addEventListener('click',function(){cbSave(true,true);cbHide();});
+  document.getElementById('cb-reject').addEventListener('click',function(){cbSave(false,false);cbHide();});
+  document.getElementById('cb-settings').addEventListener('click',function(){
+    panelOpen=!panelOpen;
+    if(panelOpen){
+      gsap.set(cbPanel,{display:'block',opacity:0,y:6});
+      gsap.to(cbPanel,{opacity:1,y:0,duration:.3,ease:'power2.out'});
+      this.textContent='Zatvoriť';
+    } else {
+      gsap.to(cbPanel,{opacity:0,y:4,duration:.22,ease:'power2.in',
+        onComplete:function(){gsap.set(cbPanel,{display:'none'});}});
+      this.textContent='Nastavenia';
+    }
+  });
+  document.getElementById('cb-save').addEventListener('click',function(){
+    cbSave(document.getElementById('cb-analytics').checked,
+           document.getElementById('cb-marketing').checked);
+    cbHide();
+  });
+  document.getElementById('cb-acc-all-p').addEventListener('click',function(){cbSave(true,true);cbHide();});
+})();
+</script>
+</body>
+</html>

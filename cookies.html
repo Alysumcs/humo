@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zásady cookies — HUMO Cigar Lounge Bratislava</title>
+<meta name="description" content="Zásady používania cookies na webovej stránke HUMO Cigar Lounge Bratislava. Informácie o cookies podľa zákona č. 452/2021 Z.z. o elektronických komunikáciách.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<style>
+:root{
+  --bg:#080b07;--bg2:#0c0f0b;
+  --gold:#b79b7b;--gold2:#d4b896;
+  --text:#f4f1ea;--body:rgba(244,241,234,.78);--dim:rgba(244,241,234,.48);
+  --border:rgba(183,155,123,.14);
+  --ease:cubic-bezier(.23,1,.32,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;cursor:none!important}
+html{overflow-x:hidden;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Montserrat',sans-serif;
+     overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.7}
+button{background:none;border:none;font-family:inherit;color:inherit}
+a{text-decoration:none;color:var(--gold)}
+a:hover{opacity:.8}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.028;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:256px}
+#pw{position:fixed;inset:0;background:var(--gold);z-index:99990;
+    transform:scaleX(1);transform-origin:right center;pointer-events:none}
+#cur{width:5px;height:5px;background:var(--gold);border-radius:50%;
+     position:fixed;pointer-events:none;z-index:100001;transform:translate(-50%,-50%)}
+#cur-r{width:28px;height:28px;border:1px solid rgba(183,155,123,.4);border-radius:50%;
+       position:fixed;pointer-events:none;z-index:100000;transform:translate(-50%,-50%);
+       transition:width .4s var(--ease),height .4s var(--ease),border-color .4s}
+#cur-r.h{width:50px;height:50px;border-color:rgba(183,155,123,.2)}
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:9000;padding:1.4rem 6vw;
+     display:flex;align-items:center;justify-content:space-between;
+     background:rgba(8,11,7,.97);backdrop-filter:blur(24px);
+     border-bottom:1px solid var(--border)}
+.nl img{width:110px;height:auto;display:block}
+.nm{display:flex;gap:2.4rem;list-style:none;
+    position:absolute;left:50%;transform:translateX(-50%)}
+.nm a{font-size:.72rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;
+      color:rgba(244,241,234,.52);transition:color .3s;padding:4px 0;position:relative}
+.nm a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;
+             background:var(--gold);transition:width .42s var(--ease)}
+.nm a:hover{color:var(--gold)}.nm a:hover::after{width:100%}
+.nav-back{font-size:.68rem;letter-spacing:3px;font-weight:600;color:rgba(244,241,234,.42);
+          text-transform:uppercase;display:flex;align-items:center;gap:.6rem;
+          transition:color .3s}
+.nav-back:hover{color:var(--gold)}
+.bur{display:none;flex-direction:column;gap:5px;padding:6px;cursor:pointer!important}
+.bur span{display:block;width:22px;height:1px;background:var(--gold);transition:.3s}
+#mm{position:fixed;inset:0;background:var(--bg2);z-index:8500;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    clip-path:inset(0 100% 0 0);transition:clip-path .75s var(--ease)}
+#mm.o{clip-path:inset(0 0% 0 0)}
+.mm-list{list-style:none;text-align:center}
+.mm-list li{padding:.9rem 0;overflow:hidden}
+.mm-list a{font-family:'Cinzel',serif;font-size:clamp(1.9rem,5.5vw,3rem);
+           letter-spacing:6px;color:var(--gold);display:inline-block;
+           transform:translateY(100%);transition:transform .55s var(--ease)}
+#mm.o .mm-list a{transform:translateY(0)}
+/* CONTENT */
+.gdpr-wrap{max-width:820px;margin:0 auto;padding:calc(74px + 6vh) 6vw 12vh}
+.gdpr-kicker{font-size:.68rem;letter-spacing:6px;color:rgba(183,155,123,.55);
+             text-transform:uppercase;font-weight:400;margin-bottom:1.4rem;display:block}
+.gdpr-title{font-family:'Cinzel',serif;font-size:clamp(2rem,5vw,4rem);
+            line-height:1;letter-spacing:3px;color:var(--text);margin-bottom:.5rem}
+.gdpr-title span{color:var(--gold)}
+.gdpr-updated{font-size:.7rem;letter-spacing:2px;color:var(--dim);
+              margin-bottom:5vh;display:block;font-weight:300}
+.gdpr-rule{width:48px;height:1px;background:rgba(183,155,123,.4);margin:3.5vh 0}
+h2.gs-title{font-family:'Cinzel',serif;font-size:clamp(1.2rem,2.5vw,1.8rem);
+            letter-spacing:2px;color:var(--text);margin:3.5vh 0 1.4rem;
+            padding-top:2.5vh;border-top:1px solid var(--border)}
+h2.gs-title:first-child{border-top:none;padding-top:0}
+h3.gs-sub{font-family:'Cinzel',serif;font-size:clamp(.92rem,1.6vw,1.1rem);
+          letter-spacing:1.5px;color:var(--gold2);margin:2.5vh 0 1rem}
+p.gs-body{font-size:.88rem;font-weight:300;color:var(--body);line-height:2;margin-bottom:1.4rem}
+ul.gs-list{font-size:.88rem;font-weight:300;color:var(--body);
+           line-height:2;margin-bottom:1.4rem;padding-left:0;list-style:none}
+ul.gs-list li{padding:.25rem 0 .25rem 1.4rem;position:relative}
+ul.gs-list li::before{content:'—';position:absolute;left:0;color:rgba(183,155,123,.5)}
+.gs-box{background:var(--bg2);border:1px solid var(--border);
+        padding:2rem 2.4rem;margin:2.5vh 0}
+.gs-box p{margin-bottom:.6rem;font-size:.88rem;font-weight:300;color:var(--body);line-height:1.9}
+.gs-box p:last-child{margin-bottom:0}
+.gs-box strong{color:var(--text);font-weight:500}
+.gs-table{width:100%;border-collapse:collapse;margin:2vh 0 2.5vh}
+.gs-table th{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:3px;
+             color:rgba(183,155,123,.6);text-transform:uppercase;
+             padding:.8rem 1rem;border-bottom:1px solid var(--border);
+             text-align:left;font-weight:400}
+.gs-table td{font-size:.82rem;font-weight:300;color:var(--body);
+             padding:.9rem 1rem;border-bottom:1px solid rgba(183,155,123,.06);
+             vertical-align:top;line-height:1.75}
+.gs-table tr:last-child td{border-bottom:none}
+.gs-tag{display:inline-block;font-size:.52rem;letter-spacing:3px;font-weight:600;
+        text-transform:uppercase;padding:.18rem .55rem;
+        border:1px solid rgba(183,155,123,.3);color:rgba(183,155,123,.6);
+        vertical-align:middle;margin-left:.4rem}
+.gs-link{color:var(--gold);border-bottom:1px solid rgba(183,155,123,.3);transition:border-color .3s}
+.gs-link:hover{border-color:var(--gold)}
+/* Footer */
+footer{background:var(--bg2);padding:4vh 8vw;border-top:1px solid var(--border)}
+.ft-in{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:2rem}
+.ft-logo img{width:96px;opacity:.5;transition:opacity .3s}
+.ft-logo:hover img{opacity:.75}
+.ft-nav{display:flex;gap:2.4rem;flex-wrap:wrap}
+.ft-nav a{font-size:.68rem;letter-spacing:3px;font-weight:600;text-transform:uppercase;
+          color:rgba(244,241,234,.3);transition:color .3s}
+.ft-nav a:hover{color:var(--gold)}
+.ft-legal{text-align:right}
+.ft-legal span{display:block;font-size:.64rem;letter-spacing:2px;
+               color:rgba(244,241,234,.22);font-weight:300;line-height:2.1}
+.ft-credit a{color:rgba(183,155,123,.45);text-decoration:none;transition:color .3s}
+.ft-credit a:hover{color:var(--gold)}
+@media(pointer:coarse){
+  *,*::before,*::after{cursor:auto!important}
+  #cur,#cur-r{display:none!important}
+}
+@media(max-width:900px){
+  .nm,.nav-back{display:none}
+  .bur{display:flex}
+  .gdpr-wrap{padding:calc(60px + 5vh) 6vw 10vh}
+  .gs-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .ft-in{flex-direction:column;align-items:flex-start;gap:1.6rem}
+  .ft-nav{gap:1.4rem}
+  .ft-legal{text-align:left}
+}
+@media(max-width:540px){
+  .gdpr-wrap{padding:calc(56px + 4vh) 5vw 8vh}
+  .ft-nav{flex-direction:column;gap:1rem}
+  footer{padding-bottom:max(1.5rem,env(safe-area-inset-bottom))}
+}
+</style>
+</head>
+<body>
+<div id="pw"></div>
+<div id="cur"></div>
+<div id="cur-r"></div>
+
+<nav id="nav" aria-label="Navigácia">
+  <a href="index.html" class="nl" aria-label="HUMO domov" data-transition>
+    <img src="HUMO_logo.svg" alt="HUMO Cigar Lounge" width="110" height="83">
+  </a>
+  <ul class="nm" role="list">
+    <li><a href="index.html#statement" data-transition>Filozofia</a></li>
+    <li><a href="menu.html" data-transition>Menu</a></li>
+    <li><a href="index.html#gallery" data-transition>Kolekcia</a></li>
+    <li><a href="index.html#reservation" data-transition>Kontakt</a></li>
+  </ul>
+  <a href="gdpr.html" class="nav-back" data-transition>← Späť</a>
+  <button class="bur" id="bur" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div id="mm" aria-hidden="true">
+  <ul class="mm-list" role="list">
+    <li><a href="index.html" data-transition>Domov</a></li>
+    <li><a href="menu.html" data-transition>Menu</a></li>
+    <li><a href="index.html#reservation" data-transition>Kontakt</a></li>
+  </ul>
+</div>
+
+<main class="gdpr-wrap">
+  <span class="gdpr-kicker">Právne informácie</span>
+  <h1 class="gdpr-title">Zásady<br><span>cookies</span></h1>
+  <span class="gdpr-updated">Platnosť od: 1. januára 2025 · Verzia 1.0</span>
+  <div class="gdpr-rule"></div>
+
+  <h2 class="gs-title">Čo sú cookies</h2>
+  <p class="gs-body">Cookies sú malé textové súbory, ktoré webová stránka ukladá do vášho prehliadača pri návšteve. Umožňujú stránke zapamätať si určité informácie medzi návštevami. Niektoré cookies sú nevyhnutné pre správne fungovanie stránky, iné slúžia na analytické alebo marketingové účely.</p>
+
+  <h2 class="gs-title">Aké cookies používame</h2>
+  <p class="gs-body">HUMO Cigar Lounge používa výlučne <strong>nevyhnutné (funkčné) cookies</strong> uložené v úložisku prehliadača (localStorage). Nepoužívame analytické, profilové ani reklamné cookies od tretích strán.</p>
+
+  <table class="gs-table">
+    <thead>
+      <tr>
+        <th>Názov</th>
+        <th>Typ</th>
+        <th>Účel</th>
+        <th>Platnosť</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>ck_humo</code></td>
+        <td>Funkčný <span class="gs-tag">nevyhnutný</span></td>
+        <td>Ukladá voľbu súhlasu s cookies (prijatý/odmietnutý) aby sa informačný banner nezobrazoval opakovaně pri každej návšteve.</td>
+        <td>12 mesiacov (localStorage)</td>
+      </tr>
+      <tr>
+        <td><code>ag_humo</code></td>
+        <td>Funkčný <span class="gs-tag">nevyhnutný</span></td>
+        <td>Zapamätá si potvrdenie veku (18+) na vstupnej stránke počas aktuálnej relácie prehliadača.</td>
+        <td>Do zatvorenia prehliadača (localStorage)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="gs-title">Právny základ</h2>
+  <p class="gs-body">Nevyhnutné cookies nevyžadujú váš súhlas — sú nevyhnutné pre základné fungovanie webu. Ich používanie je odôvodnené oprávneným záujmom prevádzkovateľa podľa čl. 6 ods. 1 písm. f) Nariadenia (EÚ) 2016/679 (GDPR) a § 55 ods. 5 zákona č. 452/2021 Z.z. o elektronických komunikáciách.</p>
+
+  <h2 class="gs-title">Správa a vymazanie cookies</h2>
+  <p class="gs-body">Súbory cookies môžete kedykoľvek vymazať alebo blokovať priamo v nastaveniach vášho prehliadača. Upozorňujeme, že blokovanie nevyhnutných cookies môže obmedziť funkčnosť stránky. Svoje preferencie môžete tiež zmeniť kliknutím na odkaz „Nastavenia cookies" v päte tejto stránky.</p>
+  <ul class="gs-list">
+    <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener" class="gs-link">Google Chrome — správa cookies</a></li>
+    <li><a href="https://support.mozilla.org/sk/kb/povolenie-zakazanie-cookies" target="_blank" rel="noopener" class="gs-link">Mozilla Firefox — správa cookies</a></li>
+    <li><a href="https://support.apple.com/sk-sk/guide/safari/sfri11471/mac" target="_blank" rel="noopener" class="gs-link">Apple Safari — správa cookies</a></li>
+    <li><a href="https://support.microsoft.com/sk-sk/microsoft-edge/odstraniť-súbory-cookie-v-programe-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener" class="gs-link">Microsoft Edge — správa cookies</a></li>
+  </ul>
+
+  <h2 class="gs-title">Prevádzkovateľ</h2>
+  <div class="gs-box">
+    <p><strong>Obchodné meno:</strong> EUPHORY K&amp;I, s. r. o.</p>
+    <p><strong>Prevádzkuje pod názvom:</strong> HUMO Cigar Lounge</p>
+    <p><strong>Sídlo:</strong> Laurinská 8, 811 01 Bratislava – Staré Mesto</p>
+    <p><strong>Prevádzka:</strong> Gorkého 5, 811 01 Bratislava – Staré Mesto</p>
+    <p><strong>IČO:</strong> 46 356 398</p>
+    <p><strong>Konateľ:</strong> Čerim Krasniči</p>
+    <p><strong>E-mail:</strong> <a href="mailto:info@humo.sk" class="gs-link">info@humo.sk</a></p>
+  </div>
+
+  <h2 class="gs-title">Zmeny zásad cookies</h2>
+  <p class="gs-body">Vyhradzujeme si právo tieto zásady aktualizovať. Odporúčame pravidelne kontrolovať aktuálnu verziu. Aktuálna verzia je vždy dostupná na adrese: <a href="https://humo.sk/cookies.html" class="gs-link">humo.sk/cookies.html</a></p>
+
+</main>
+
+<footer>
+  <div class="ft-in">
+    <a href="index.html" class="ft-logo" aria-label="HUMO domov" data-transition>
+      <img src="HUMO_logo.svg" alt="HUMO" width="96" height="72">
+    </a>
+    <nav class="ft-nav" aria-label="Päticová navigácia">
+      <a href="gdpr.html" data-transition>Ochrana osobných údajov</a>
+      <a href="cookies.html">Zásady cookies</a>
+      <a href="index.html#" onclick="alert('Otvorte index.html a kliknite Nastavenia cookies v päte.');return false;">Nastavenia cookies</a>
+    </nav>
+    <div class="ft-legal">
+      <span>© 2025 EUPHORY K&amp;I, s. r. o.</span>
+      <span>Gorkého 5 · 811 01 Bratislava</span>
+      <span class="ft-credit">Vytvorilo: <a href="https://alysum.sk" target="_blank" rel="noopener">Alysum cs</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+var cur=document.querySelector('#cur'),curR=document.querySelector('#cur-r');
+document.addEventListener('mousemove',function(e){
+  gsap.to(cur,{x:e.clientX,y:e.clientY,duration:.06,overwrite:true});
+  gsap.to(curR,{x:e.clientX,y:e.clientY,duration:.42,ease:'power3.out',overwrite:true});
+});
+document.querySelectorAll('a,button').forEach(function(el){
+  el.addEventListener('mouseenter',function(){curR.classList.add('h')});
+  el.addEventListener('mouseleave',function(){curR.classList.remove('h')});
+});
+var pw=document.querySelector('#pw');
+gsap.to(pw,{scaleX:0,transformOrigin:'right center',duration:.7,ease:'power4.out',delay:.08});
+document.querySelectorAll('[data-transition]').forEach(function(el){
+  el.addEventListener('click',function(e){
+    var h=el.getAttribute('href');
+    if(!h||h==='#') return;
+    e.preventDefault();
+    gsap.to(pw,{scaleX:1,transformOrigin:'left center',duration:.52,ease:'power4.in',
+      onComplete:function(){window.location.href=h}
+    });
+  });
+});
+var bur=document.querySelector('#bur'),mm=document.querySelector('#mm');
+if(bur&&mm){
+  bur.addEventListener('click',function(){
+    var o=mm.classList.toggle('o');
+    bur.setAttribute('aria-expanded',o);
+    mm.setAttribute('aria-hidden',!o);
+  });
+}
+})();
+</script>
+</body>
+</html>
